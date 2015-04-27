@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<noscript><meta http-equiv="refresh" content="0; URL=/files/haluu/F04BGLNQQ/benson.ipynb?nojsmode=1" /></noscript>
+<script type="text/javascript">
+window.load_start_ms = new Date().getTime();
+window.load_log = [];
+window.logLoad = function(k) {
+	var ms = new Date().getTime();
+	window.load_log.push({
+		k: k,
+		t: (ms-window.load_start_ms)/1000
+	})
+}
+if(self!==top)window.document.write("\u003Cstyle>body * {display:none !important;}\u003C\/style>\u003Ca href=\"#\" onclick="+
+"\"top.location.href=window.location.href\" style=\"display:block !important;padding:10px\">Go to Slack.com\u003C\/a>");
+</script>
+
+
+<script type="text/javascript">
+window.callSlackAPIUnauthed = function(method, args, callback) {
+	var url = '/api/'+method+'?t='+new Date().getTime();
+	var req = new XMLHttpRequest();
+	
+	req.onreadystatechange = function() {
+		if (req.readyState == 4) {
+			req.onreadystatechange = null;
+			var obj;
+			
+			if (req.status == 200) {
+				if (req.responseText.indexOf('{') == 0) {
+					try {
+						eval('obj = '+req.responseText);
+					} catch (err) {
+						console.warn('unable to do anything with api rsp');
+					}
+				}
+			}
+			
+			obj = obj || {
+				ok: false	
+			}
+			
+			callback(obj.ok, obj, args);
+		}
+	}
+	
+	req.open('POST', url, 1);
+	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+	var args2 = [];
+	for (i in args) {
+		args2[args2.length] = encodeURIComponent(i)+'='+encodeURIComponent(args[i]);
+	}
+
+	req.send(args2.join('&'));
+}
+</script>
+			<meta name="referrer" content="no-referrer">
+			<meta name="superfish" content="nofish">
+	<script type="text/javascript">
+
+
+
+var TS_last_log_date = null;
+var TSMakeLogDate = function() {
+	var date = new Date();
+	
+	var y = date.getFullYear();
+	var mo = date.getMonth()+1;
+	var d = date.getDate();
+
+	var h = date.getHours();
+	var mi = date.getMinutes();
+	var s = date.getSeconds();
+	var ms = date.getMilliseconds();
+	var str = y+'/'+mo+'/'+d+' '+h+':'+mi+':'+s+'.'+ms;
+	if (TS_last_log_date) {
+		var diff = date-TS_last_log_date;
+		//str+= ' ('+diff+'ms)';
+	}
+	TS_last_log_date = date;
+	return str+' ';
+}
+
+var TSSSB = {
+	
+	
+	call: function() {
+		return false;
+	}
+	
+	
+}
+
+</script>	<script type="text/javascript">TSSSB.call('didFinishLoading');</script>
+	    <meta charset="utf-8">
+    <title>benson.ipynb | metis data science bootcamp Slack</title>
+    <meta name="author" content="Slack">
+
+								
+															
+    									
+		
+		<!-- output_css "core" -->
+    <link href="https://slack.global.ssl.fastly.net/e5d7/style/rollup-plastic.css" rel="stylesheet" type="text/css">
+
+	<!-- output_css "regular" -->
+    <link href="https://slack.global.ssl.fastly.net/4424/style/comments.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/8455/style/stars.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/e29f/style/print.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/6a1b/style/files.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/7e36/style/libs/codemirror.css" rel="stylesheet" type="text/css">
+    <link href="https://slack.global.ssl.fastly.net/5319/style/libs/lato-1.css" rel="stylesheet" type="text/css">
+
+	
+
+	
+	
+	
+
+	<!--[if lt IE 9]>
+	<script src="https://slack.global.ssl.fastly.net/ef0d/js/libs/html5shiv.js"></script>
+	<![endif]-->
+
+	
+<link id="favicon" rel="shortcut icon" href="https://slack.global.ssl.fastly.net/272a/img/icons/favicon-32.png" sizes="16x16 32x32 48x48" type="image/png" />
+
+<link rel="icon" href="https://slack.global.ssl.fastly.net/ba3c/img/icons/app-256.png" sizes="256x256" type="image/png" />
+
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-152.png" />
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-120.png" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-72.png" />
+<link rel="apple-touch-icon-precomposed" href="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-57.png" />
+
+<meta name="msapplication-TileColor" content="#FFFFFF" />
+<meta name="msapplication-TileImage" content="https://slack.global.ssl.fastly.net/272a/img/icons/app-144.png" />	<script>
+!function(a,b){function c(a,b){try{if("function"!=typeof a)return a;if(!a.bugsnag){var c=e();a.bugsnag=function(d){if(b&&b.eventHandler&&(u=d),v=c,!y){var e=a.apply(this,arguments);return v=null,e}try{return a.apply(this,arguments)}catch(f){throw l("autoNotify",!0)&&(x.notifyException(f,null,null,"error"),s()),f}finally{v=null}},a.bugsnag.bugsnag=a.bugsnag}return a.bugsnag}catch(d){return a}}function d(){B=!1}function e(){var a=document.currentScript||v;if(!a&&B){var b=document.scripts||document.getElementsByTagName("script");a=b[b.length-1]}return a}function f(a){var b=e();b&&(a.script={src:b.src,content:l("inlineScript",!0)?b.innerHTML:""})}function g(b){var c=l("disableLog"),d=a.console;void 0===d||void 0===d.log||c||d.log("[Bugsnag] "+b)}function h(b,c,d){if(d>=5)return encodeURIComponent(c)+"=[RECURSIVE]";d=d+1||1;try{if(a.Node&&b instanceof a.Node)return encodeURIComponent(c)+"="+encodeURIComponent(r(b));var e=[];for(var f in b)if(b.hasOwnProperty(f)&&null!=f&&null!=b[f]){var g=c?c+"["+f+"]":f,i=b[f];e.push("object"==typeof i?h(i,g,d):encodeURIComponent(g)+"="+encodeURIComponent(i))}return e.join("&")}catch(j){return encodeURIComponent(c)+"="+encodeURIComponent(""+j)}}function i(a,b){if(null==b)return a;a=a||{};for(var c in b)if(b.hasOwnProperty(c))try{a[c]=b[c].constructor===Object?i(a[c],b[c]):b[c]}catch(d){a[c]=b[c]}return a}function j(a,b){a+="?"+h(b)+"&ct=img&cb="+(new Date).getTime();var c=new Image;c.src=a}function k(a){var b={},c=/^data\-([\w\-]+)$/;if(a)for(var d=a.attributes,e=0;e<d.length;e++){var f=d[e];if(c.test(f.nodeName)){var g=f.nodeName.match(c)[1];b[g]=f.value||f.nodeValue}}return b}function l(a,b){C=C||k(J);var c=void 0!==x[a]?x[a]:C[a.toLowerCase()];return"false"===c&&(c=!1),void 0!==c?c:b}function m(a){return a&&a.match(D)?!0:(g("Invalid API key '"+a+"'"),!1)}function n(b,c){var d=l("apiKey");if(m(d)&&A){A-=1;var e=l("releaseStage"),f=l("notifyReleaseStages");if(f){for(var h=!1,k=0;k<f.length;k++)if(e===f[k]){h=!0;break}if(!h)return}var n=[b.name,b.message,b.stacktrace].join("|");if(n!==w){w=n,u&&(c=c||{},c["Last Event"]=q(u));var o={notifierVersion:H,apiKey:d,projectRoot:l("projectRoot")||a.location.protocol+"//"+a.location.host,context:l("context")||a.location.pathname,userId:l("userId"),user:l("user"),metaData:i(i({},l("metaData")),c),releaseStage:e,appVersion:l("appVersion"),url:a.location.href,userAgent:navigator.userAgent,language:navigator.language||navigator.userLanguage,severity:b.severity,name:b.name,message:b.message,stacktrace:b.stacktrace,file:b.file,lineNumber:b.lineNumber,columnNumber:b.columnNumber,payloadVersion:"2"},p=x.beforeNotify;if("function"==typeof p){var r=p(o,o.metaData);if(r===!1)return}return 0===o.lineNumber&&/Script error\.?/.test(o.message)?g("Ignoring cross-domain script error. See https://bugsnag.com/docs/notifiers/js/cors"):(j(l("endpoint")||G,o),void 0)}}}function o(){var a,b,c=10,d="[anonymous]";try{throw new Error("")}catch(e){a="<generated>\n",b=p(e)}if(!b){a="<generated-ie>\n";var f=[];try{for(var h=arguments.callee.caller.caller;h&&f.length<c;){var i=E.test(h.toString())?RegExp.$1||d:d;f.push(i),h=h.caller}}catch(j){g(j)}b=f.join("\n")}return a+b}function p(a){return a.stack||a.backtrace||a.stacktrace}function q(a){var b={millisecondsAgo:new Date-a.timeStamp,type:a.type,which:a.which,target:r(a.target)};return b}function r(a){if(a){var b=a.attributes;if(b){for(var c="<"+a.nodeName.toLowerCase(),d=0;d<b.length;d++)b[d].value&&"null"!=b[d].value.toString()&&(c+=" "+b[d].name+'="'+b[d].value+'"');return c+">"}return a.nodeName}}function s(){z+=1,a.setTimeout(function(){z-=1})}function t(a,b,c){var d=a[b],e=c(d);a[b]=e}var u,v,w,x={},y=!0,z=0,A=10;x.noConflict=function(){return a.Bugsnag=b,x},x.refresh=function(){A=10},x.notifyException=function(a,b,c,d){b&&"string"!=typeof b&&(c=b,b=void 0),c||(c={}),f(c),n({name:b||a.name,message:a.message||a.description,stacktrace:p(a)||o(),file:a.fileName||a.sourceURL,lineNumber:a.lineNumber||a.line,columnNumber:a.columnNumber?a.columnNumber+1:void 0,severity:d||"warning"},c)},x.notify=function(b,c,d,e){n({name:b,message:c,stacktrace:o(),file:a.location.toString(),lineNumber:1,severity:e||"warning"},d)};var B="complete"!==document.readyState;document.addEventListener?(document.addEventListener("DOMContentLoaded",d,!0),a.addEventListener("load",d,!0)):a.attachEvent("onload",d);var C,D=/^[0-9a-f]{32}$/i,E=/function\s*([\w\-$]+)?\s*\(/i,F="https://notify.bugsnag.com/",G=F+"js",H="2.4.7",I=document.getElementsByTagName("script"),J=I[I.length-1];if(a.atob){if(a.ErrorEvent)try{0===new a.ErrorEvent("test").colno&&(y=!1)}catch(K){}}else y=!1;if(l("autoNotify",!0)){t(a,"onerror",function(b){return function(c,d,e,g,h){var i=l("autoNotify",!0),j={};!g&&a.event&&(g=a.event.errorCharacter),f(j),v=null,i&&!z&&n({name:h&&h.name||"window.onerror",message:c,file:d,lineNumber:e,columnNumber:g,stacktrace:h&&p(h)||o(),severity:"error"},j),b&&b(c,d,e,g,h)}});var L=function(a){return function(b,d){if("function"==typeof b){b=c(b);var e=Array.prototype.slice.call(arguments,2);return a(function(){b.apply(this,e)},d)}return a(b,d)}};t(a,"setTimeout",L),t(a,"setInterval",L),a.requestAnimationFrame&&t(a,"requestAnimationFrame",function(a){return function(b){return a(c(b))}}),a.setImmediate&&t(a,"setImmediate",function(a){return function(){var b=Array.prototype.slice.call(arguments);return b[0]=c(b[0]),a.apply(this,b)}}),"EventTarget Window Node ApplicationCache AudioTrackList ChannelMergerNode CryptoOperation EventSource FileReader HTMLUnknownElement IDBDatabase IDBRequest IDBTransaction KeyOperation MediaController MessagePort ModalWindow Notification SVGElementInstance Screen TextTrack TextTrackCue TextTrackList WebSocket WebSocketWorker Worker XMLHttpRequest XMLHttpRequestEventTarget XMLHttpRequestUpload".replace(/\w+/g,function(b){var d=a[b]&&a[b].prototype;d&&d.hasOwnProperty&&d.hasOwnProperty("addEventListener")&&(t(d,"addEventListener",function(a){return function(b,d,e,f){return d&&d.handleEvent&&(d.handleEvent=c(d.handleEvent,{eventHandler:!0})),a.call(this,b,c(d,{eventHandler:!0}),e,f)}}),t(d,"removeEventListener",function(a){return function(b,d,e,f){return a.call(this,b,d,e,f),a.call(this,b,c(d),e,f)}}))})}a.Bugsnag=x,"function"==typeof define&&define.amd?define([],function(){return x}):"object"==typeof module&&"object"==typeof module.exports&&(module.exports=x)}(window,window.Bugsnag);
+Bugsnag.apiKey = "2a86b308af5a81d2c9329fedfb4b30c7";
+Bugsnag.appVersion = "59b551c2a34baf1688afcf291a6eb9bea7c84a09-1428696596";
+Bugsnag.endpoint = "https://errors.slack-core.com/js";
+Bugsnag.releaseStage = "prod";
+Bugsnag.user = {id:"U048DMH2X",name:"marcolunardi",email:"marco@marcolunardi.com"};
+Bugsnag.metaData = {};
+Bugsnag.metaData.team = {id:"T02JULWBE",name:"metis data science bootcamp",domain:"metis-dsbc"};
+Bugsnag.refresh_interval = setInterval(function () { (window.TS && window.TS.client) ? Bugsnag.refresh() : clearInterval(Bugsnag.refresh_interval); }, 15 * 60 * 1000);
+</script>			<script type="text/javascript">
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-106458-17', 'slack.com');
+	ga('send', 'pageview');
+
+
+	(function(e,c,b,f,d,g,a){e.SlackBeaconObject=d;
+	e[d]=e[d]||function(){(e[d].q=e[d].q||[]).push([1*new Date(),arguments])};
+	e[d].l=1*new Date();g=c.createElement(b);a=c.getElementsByTagName(b)[0];
+	g.async=1;g.src=f;a.parentNode.insertBefore(g,a)
+	})(window,document,"script","https://slack.global.ssl.fastly.net/dcf8/js/libs/beacon.js","sb");
+	sb('set', 'token', '3307f436963e02d4f9eb85ce5159744c');
+	sb('set', 'user_id', 'U048DMH2X');
+	sb('set', 'user_batch', "immediate-launch");
+	sb('set', 'user_created', "2015-04-01");
+	sb('set', 'name_tag', 'metis-dsbc/marcolunardi');
+	sb('track', 'pageview');
+
+	function track(a){ga('send','event','web',a);sb('track',a);}
+
+
+	
+	(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+	for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+	
+	mixpanel.init("12d52d8633a5b432975592d13ebd3f34");
+
+	function mixpanel_track(event_name){if(window.mixpanel&&event_name)mixpanel.track(event_name);}
+
+</script>	
+</head>
+
+  <body >
+
+		  			<script>
+		
+			var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			if (w > 1440) document.querySelector('body').classList.add('widescreen');
+		
+		</script>
+	
+  	
+	
+
+			<nav id="site_nav" class="no_transition">
+
+	<div id="site_nav_contents">
+
+		<div id="user_menu">
+			<div id="user_menu_contents">
+				<div id="user_menu_avatar">
+										<span class="member_image thumb_48" style="background-image: url('https://secure.gravatar.com/avatar/20f8080f128aff4dbab48695b0caeb89.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020.png')" data-thumb-size="48" data-member-id="U048DMH2X"></span>
+					<span class="member_image thumb_36" style="background-image: url('https://secure.gravatar.com/avatar/20f8080f128aff4dbab48695b0caeb89.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-72.png')" data-thumb-size="36" data-member-id="U048DMH2X"></span>
+				</div>
+				<h3>Signed in as</h3>
+				<span id="user_menu_name">marcolunardi</span>
+			</div>
+		</div>
+
+		<div class="nav_contents">
+
+			<ul class="primary_nav">
+				<li><a href="/home"><i class="fa fa-home"></i>Home</a></li>
+				<li><a href="/account"><i class="fa fa-user"></i>Account & Profile</a></li>
+				<li><a href="/services/new"><i class="fa fa-wrench"></i>Integrations</a></li>
+				<li><a href="/archives"><i class="fa fa-inbox"></i>Message Archives</a></li>
+				<li><a href="/files"><i class="fa fa-file"></i>Files</a></li>
+				<li><a href="/team"><i class="fa fa-book"></i>Team Directory</a></li>
+									<li><a href="/stats"><i class="fa fa-tachometer"></i>Statistics</a></li>
+													<li><a href="/customize"><i class="fa fa-magic"></i>Customize</a></li>
+													<li><a href="/account/team"><i class="fa fa-cog"></i>Team Settings</a></li>
+							</ul>
+
+			
+		</div>
+
+		<div id="footer">
+
+			<ul id="footer_nav">
+				<li><a href="/is">Tour</a></li>
+				<li><a href="/apps">Apps</a></li>
+				<li><a href="/brand-guidelines">Brand Guidelines</a></li>
+				<li><a href="/help">Help</a></li>
+				<li><a href="https://api.slack.com" target="_blank">API<i class="fa fa-external-link small_left_margin"></i></a></li>
+								<li><a href="/pricing">Pricing</a></li>
+				<li><a href="/help/requests/new">Contact</a></li>
+				<li><a href="/terms-of-service">Policies</a></li>
+				<li><a href="http://slackhq.com/" target="_blank">Our Blog</a></li>
+				<li><a href="https://slack.com/signout/2640710388?crumb=s-1428696780-e68dbcc3c8-%E2%98%83">Sign Out<i class="fa fa-sign-out small_left_margin"></i></a></li>
+			</ul>
+
+			<p id="footer_signature">Made with <i class="fa fa-heart"></i> by Slack</p>
+
+		</div>
+
+	</div>
+</nav>	
+	<header>
+					<a id="menu_toggle" class="no_transition">
+				<span class="menu_icon"></span>
+				<span class="menu_label">Menu</span>
+				<span class="vert_divider"></span>
+			</a>
+			<h1 id="header_team_name" class="inline_block no_transition">
+				<a href="/home">
+					<i class="fa fa-home" /></i>
+					metis data science bootcamp
+				</a>
+			</h1>
+			<div class="header_nav">
+				<div class="header_btns float_right">
+					<a id="team_switcher">
+						<i class="fa fa-th-large"></i>
+						<span class="block label">Teams</span>
+					</a>
+					<a href="/help" id="help_link">
+						<i class="fa fa-life-ring"></i>
+						<span class="block label">Help</span>
+					</a>
+					<a href="/messages">
+						<img src="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-64.png" srcset="https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-32.png 1x, https://slack.global.ssl.fastly.net/0dc1/img/icons/ios-64.png 2x" />
+						<span class="block label">Launch</span>
+					</a>
+				</div>
+						                    <ul id="header_team_nav">
+		                        		                            <li class="active">
+		                            	<a href="https://metis-dsbc.slack.com/home" target="https://metis-dsbc.slack.com/">
+		                            				                            			<i class="fa fa-check active_icon"></i>
+		                            				                            					                            		<i class="team_icon" style="background-image: url('https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-03-20/4125090867_5a24b9149f563871b311_88.jpg');"></i>
+			                            			                            		<span class="switcher_label team_name">metis data science bootcamp</span>
+		                            	</a>
+		                            </li>
+		                        		                        <li id="add_team_option"><a href="https://slack.com/signin" target="_blank"><i class="fa fa-plus team_icon"></i> <span class="switcher_label">Sign in to another team...</span></a></li>
+		                    </ul>
+		                			</div>
+		
+		
+	</header>
+
+	<div id="page">
+
+		<div id="page_contents" >
+
+<p class="print_only">
+	<strong>Created by haluu on April 10, 2015 at 8:13 PM</strong><br />
+	<span class="subtle_silver break_word">https://metis-dsbc.slack.com/files/haluu/F04BGLNQQ/benson.ipynb</span>
+</p>
+
+<div class="file_header_container no_print"></div>
+
+<div class="alert_container">
+		<div class="file_public_link_shared alert" style="display: none;">
+		
+	<i class="fa fa-link"></i> Public Link: <a class="file_public_link" href="https://slack-files.com/T02JULWBE-F04BGLNQQ-e25a66fdbc" target="new">https://slack-files.com/T02JULWBE-F04BGLNQQ-e25a66fdbc</a>
+</div></div>
+
+<div id="file_page" class="card top_padding">
+
+	<p class="small subtle_silver no_print meta">
+		19KB Plain Text snippet created on <span class="date">April 10th 2015</span>.
+		This file is private.		<span class="file_share_list"></span>
+	</p>
+
+	<a id="file_action_cog" class="action_cog action_cog_snippet float_right no_print">
+		<span>Actions </span><i class="fa fa-cog"></i>
+	</a>
+	<a id="snippet_expand_toggle" class="float_right no_print">
+		<i class="fa fa-expand "></i>
+		<i class="fa fa-compress hidden"></i>
+	</a>
+
+	<div class="large_bottom_margin clearfix">
+		<pre id="file_contents">{
+ &quot;cells&quot;: [
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;# MTA Data Challenges&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 7,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;from __future__ import division\n&quot;,
+    &quot;import csv\n&quot;,
+    &quot;from datetime import datetime\n&quot;,
+    &quot;from collections import Counter\n&quot;,
+    &quot;import matplotlib.pyplot as plt\n&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;### Challenge 1&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 8,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n&quot;,
+      &quot;                                 Dload  Upload   Total   Spent    Left  Speed\n&quot;,
+      &quot;100 23.9M    0 23.9M    0     0  7552k      0 --:--:--  0:00:03 --:--:-- 7554k\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;!curl -O http://web.mta.info/developers/data/nyct/turnstile/turnstile_150404.txt&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: null,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: []
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 9,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;with open(&#039;turnstile_150404.txt&#039;) as f:\n&quot;,
+    &quot;    reader = csv.reader(f)\n&quot;,
+    &quot;    rows = [[cell.strip() for cell in row] for row in reader]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 10,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;assert rows.pop(0) == [&#039;C/A&#039;, &#039;UNIT&#039;, &#039;SCP&#039;, &#039;STATION&#039;, &#039;LINENAME&#039;,\n&quot;,
+    &quot;                       &#039;DIVISION&#039;, &#039;DATE&#039;, &#039;TIME&#039;, &#039;DESC&#039;, &#039;ENTRIES&#039;,\n&quot;,
+    &quot;                       &#039;EXITS&#039;]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 11,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;raw_readings = {}\n&quot;,
+    &quot;for row in rows:\n&quot;,
+    &quot;    raw_readings.setdefault(tuple(row[:4]), []).append(tuple(row[4:]))&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;`raw_readings` is a solution to Challenge 1.&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;### Challenge 2&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 12,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;datetime_cumulative = {turnstile: [(datetime.strptime(date + time,\n&quot;,
+    &quot;                                                      &#039;%m/%d/%Y%X&#039;),\n&quot;,
+    &quot;                                    int(in_cumulative))\n&quot;,
+    &quot;                                   for _, _, date, time,\n&quot;,
+    &quot;                                       _, in_cumulative, _ in rows]\n&quot;,
+    &quot;                       for turnstile, rows in raw_readings.items()}&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 13,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;for rows in datetime_cumulative.values():\n&quot;,
+    &quot;    assert rows == sorted(rows)&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 14,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;datetime_count_times = {turnstile: [[rows[i][0],\n&quot;,
+    &quot;                                     rows[i+1][1] - rows[i][1],\n&quot;,
+    &quot;                                     rows[i+1][0] - rows[i][0]]\n&quot;,
+    &quot;                                    for i in range(len(rows) - 1)]\n&quot;,
+    &quot;                        for turnstile, rows in datetime_cumulative.items()}&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 15,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[3132, 3502, 3854, 407303, 407345]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;all_counts = [count for rows in datetime_count_times.values() for _, count, _ in rows]\n&quot;,
+    &quot;all_counts.sort()\n&quot;,
+    &quot;print all_counts[-5:]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 16,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[-1874197078, -116970030, -3090944, -1367465, -608977, -406974, -405708, -321111, -5691, -1868, -1845, -1810, -1774, -1699, -1699, -1666, -1663, -1634, -1634, -1632, -1629, -1603, -1599, -1598, -1592, -1560, -1554, -1540, -1530, -1528, -1524, -1519, -1517, -1495, -1491, -1489, -1487, -1477, -1456, -1452, -1428, -1409, -1393, -1390, -1383, -1347, -1333, -1324, -1318, -1312, -1311, -1311, -1309, -1294, -1288, -1284, -1282, -1281, -1270, -1250, -1231, -1213, -1213, -1211, -1211, -1209, -1209, -1203, -1202, -1188, -1178, -1175, -1160, -1154, -1146, -1130, -1114, -1113, -1105, -1103, -1094, -1087, -1087, -1080, -1069, -1057, -1054, -1043, -1037, -1034, -1034, -1031, -1030, -1026, -1024, -1016, -1011, -1001, -994, -983, -978, -971, -967, -964, -963, -958, -956, -950, -945, -939, -939, -937, -936, -925, -916, -904, -901, -894, -892, -890, -886, -883, -879, -874, -873, -865, -864, -859, -848, -844, -840, -835, -829, -826, -826, -824, -818, -812, -811, -807, -806, -802, -801, -795, -792, -791, -780, -780, -778, -775, -773, -765, -763, -759, -752, -749, -743, -741, -734, -731, -730, -728, -725, -724, -723, -720, -717, -717, -716, -715, -714, -711, -710, -708, -708, -707, -695, -691, -686, -686, -684, -682, -681, -681, -679, -676, -671, -671, -670, -670, -666, -666, -666, -665, -664, -663, -662, -657, -656, -656, -655, -653, -651, -645, -645, -645, -641, -637, -633, -632, -631, -630, -630, -627, -626, -623, -618, -618, -617, -615, -614, -610, -608, -607, -604, -603, -603, -603, -601, -601, -595, -595, -594, -594, -592, -587, -586, -585, -585, -584, -584, -581, -578, -578, -578, -578, -575, -573, -572, -571, -571, -570, -569, -568, -567, -566, -565, -560, -560, -560, -559, -559, -558, -553, -552, -550, -549, -549, -547, -545, -543, -543, -540, -539, -539, -537, -537, -536, -535, -534, -532, -530, -530, -529, -529, -524, -524, -523, -521, -520, -517, -517, -517, -516, -514, -514, -513, -513, -512, -509, -508, -508, -507, -505, -505, -504, -504, -503, -502, -502, -501, -499, -499, -499, -498, -498, -498, -496, -492, -492, -487, -483, -483, -481, -479, -478, -475, -474, -473, -473, -472, -470, -469, -467, -465, -464, -462, -461, -459, -456, -456, -455, -451, -450, -450, -449, -448, -447, -447, -445, -444, -442, -442, -438, -435, -434, -433, -431, -431, -430, -430, -430, -430, -429, -428, -427, -427, -426, -425, -422, -422, -420, -419, -418, -418, -416, -415, -415, -409, -409, -404, -402, -401, -401, -400, -398, -398, -398, -397, -397, -396, -395, -394, -394, -392, -391, -391, -390, -387, -383, -381, -381, -380, -380, -379, -378, -377, -377, -377, -375, -374, -374, -371, -368, -367, -367, -366, -365, -363, -363, -362, -362, -360, -360, -359, -357, -357, -356, -355, -353, -353, -353, -352, -352, -352, -351, -351, -350, -349, -349, -348, -348, -347, -347, -347, -346, -346, -346, -345, -345, -344, -340, -338, -338, -336, -336, -335, -335, -334, -334, -334, -334, -333, -332, -332, -332, -330, -330, -329, -328, -328, -328, -327, -327, -325, -324, -322, -321, -321, -320, -320, -319, -319, -317, -317, -316, -316, -314, -314, -313, -311, -309, -308, -308, -308, -306, -305, -298, -298, -297, -296, -294, -293, -292, -289, -288, -287, -285, -285, -282, -281, -281, -280, -280, -278, -278, -276, -272, -270, -270, -270, -270, -269, -268, -265, -263, -262, -261, -261, -260, -259, -258, -258, -258, -256, -256, -253, -253, -252, -251, -250, -250, -249, -249, -245, -244, -243, -243, -242, -242, -241, -240, -240, -240, -239, -239, -237, -234, -233, -233, -233, -232, -231, -229, -229, -228, -228, -227, -227, -227, -226, -224, -224, -220, -219, -218, -218, -217, -217, -216, -215, -215, -215, -214, -210, -209, -208, -207, -206, -206, -206, -206, -205, -203, -202, -200, -199, -199, -199, -199, -197, -196, -196, -196, -196, -195, -194, -194, -194, -194, -194, -194, -193, -193, -193, -192, -192, -192, -191, -191, -190, -190, -190, -190, -189, -189, -189, -188, -187, -187, -187, -187, -186, -186, -186, -185, -184, -183, -182, -181, -180, -179, -177, -175, -174, -171, -171, -171, -170, -169, -168, -167, -167, -167, -166, -166, -165, -164, -162, -160, -160, -159, -158, -158, -158, -157, -156, -155, -153, -151, -151, -150, -150, -150, -149, -149, -149, -147, -147, -146, -146, -144, -144, -143, -143, -142, -142, -142, -142, -141, -140, -140, -140, -140, -139, -137, -137, -137, -137, -137, -136, -136, -136, -135, -135, -134, -133, -133, -133, -133, -132, -132, -132, -132, -131, -130, -129, -129, -128, -128, -127, -127, -126, -126, -125, -125, -125, -125, -122, -121, -120, -119, -119, -118, -118, -117, -117, -117, -117, -116, -116, -115, -115, -115, -114, -114, -113, -111, -111, -110, -110, -109, -108, -108, -107, -107, -107, -107, -107, -106, -106, -106, -106, -106, -106, -104, -104, -104, -103, -103, -103, -102, -102, -101, -100, -100, -100, -99, -99, -99, -98, -98, -97, -96, -95, -95, -94, -94, -94, -94, -93, -93, -92, -92, -91, -91, -91, -91, -89, -89, -89, -89, -87, -86, -85, -85, -85, -84, -84, -83, -83, -83, -83, -82, -82, -81, -79, -79, -78, -77, -77, -77, -77, -76, -76, -76, -76, -75, -75, -74, -73, -73, -71, -70, -69, -69, -68, -67, -67, -67, -66, -66, -65, -64, -64, -63, -62, -62, -61, -61, -61, -61, -61, -61, -61, -60, -60, -60, -60, -60, -59, -59, -58, -58, -58, -58, -57, -57, -57, -56, -56, -55, -55, -55, -55, -55, -54, -53, -53, -52, -52, -52, -52, -51, -51, -50, -50, -49, -49, -49, -49, -49, -49, -49, -49, -49, -48, -48, -48, -48, -47, -47, -47, -47, -47, -47, -46, -46, -46, -45, -45, -45, -45, -45, -44, -44, -44, -43, -43, -42, -42, -41, -41, -41, -41, -41, -41, -40, -40, -40, -40, -39, -38, -38, -38, -37, -36, -36, -36, -36, -36, -35, -35, -34, -34, -34, -34, -34, -33, -33, -33, -33, -33, -32, -32, -32, -32, -31, -31, -31, -31, -31, -30, -30, -30, -30, -29, -29, -29, -29, -29, -28, -28, -28, -28, -28, -27, -27, -26, -26, -26, -26, -25, -25, -24, -24, -24, -24, -24, -24, -24, -24, -24, -24, -23, -23, -23, -22, -22, -22, -22, -21, -21, -21, -21, -21, -21, -20, -20, -19, -19, -19, -19, -19, -19, -19, -19, -19, -19, -18, -18, -18, -18, -18, -17, -17, -17, -17, -16, -16, -16, -15, -15, -14, -14, -14, -13, -13, -13, -13, -13, -13, -13, -12, -12, -12, -12, -12, -12, -12, -10, -10, -10, -10, -10, -10, -10, -10, -10, -9, -9, -8, -8, -8, -8, -7, -7, -7, -7, -7, -7, -7, -7, -7, -6, -6, -5, -5, -4, -4, -4, -4, -4, -4, -3, -3, -3, -3, -3, -3, -2, -2, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;print all_counts[:1200]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 17,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[(4.0, 173343), (4.2, 10545), (8.0, 192), (4.433333333333334, 155), (4.000277777777778, 33), (3.999722222222222, 33), (0.02222222222222222, 32), (0.02777777777777778, 20), (0.15277777777777776, 17), (2.7925, 17)]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;all_times = [duration.seconds / 60 / 60\n&quot;,
+    &quot;             for rows in datetime_count_times.values()\n&quot;,
+    &quot;             for _, _, duration in rows]\n&quot;,
+    &quot;print Counter(all_times).most_common(10)&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 18,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;datetime_counts = {turnstile: [(time, count)\n&quot;,
+    &quot;                               for (time, count, _) in rows\n&quot;,
+    &quot;                               if 0 &lt;= count &lt;= 5000]\n&quot;,
+    &quot;                   for turnstile, rows in datetime_count_times.items()}&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;`datetime_counts` is a solution to Challenge 2.&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 19,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;0.994133610238\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;all_good_counts = [count for rows in datetime_counts.values() for _, count in rows]\n&quot;,
+    &quot;print len(all_good_counts) / len(all_counts)&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 20,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[3045, 3052, 3132, 3502, 3854]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;all_good_counts.sort()\n&quot;,
+    &quot;print all_good_counts[-5:]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 21,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[0, 0, 0, 0, 0]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;print all_good_counts[:5]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;### Challenge 3&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 22,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[(datetime.date(2015, 3, 28), 1024), (datetime.date(2015, 3, 29), 869), (datetime.date(2015, 3, 30), 2410), (datetime.date(2015, 3, 31), 2427), (datetime.date(2015, 4, 1), 2419), (datetime.date(2015, 4, 2), 2582), (datetime.date(2015, 4, 3), 1809)]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;day_counts = {}\n&quot;,
+    &quot;for turnstile, rows in datetime_counts.items():\n&quot;,
+    &quot;    by_day = {}\n&quot;,
+    &quot;    for time, count in rows:\n&quot;,
+    &quot;        day = time.date()\n&quot;,
+    &quot;        by_day[day] = by_day.get(day, 0) + count\n&quot;,
+    &quot;    day_counts[turnstile] = sorted(by_day.items())\n&quot;,
+    &quot;    \n&quot;,
+    &quot;print day_counts.values()[1]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 23,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;station_counts = {}\n&quot;,
+    &quot;\n&quot;,
+    &quot;for daycounts_key, daycounts_value in day_counts.items():\n&quot;,
+    &quot;    daycounts_key_list = list(daycounts_key)\n&quot;,
+    &quot;    daycounts_key_list.remove(daycounts_key_list[2])\n&quot;,
+    &quot;    station_key = tuple(daycounts_key_list)\n&quot;,
+    &quot;#        print daycounts_value\n&quot;,
+    &quot;#     print station_counts.get(station_key,[])\n&quot;,
+    &quot;    station_counts.setdefault(station_key, []).extend(daycounts_value)\n&quot;,
+    &quot;\n&quot;,
+    &quot;#print station_counts.items()[0]\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;    \n&quot;,
+    &quot;    &quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 24,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;((&#039;N325A&#039;, &#039;R218&#039;, &#039;ELMHURST AVE&#039;), [(datetime.date(2015, 3, 28), 9685), (datetime.date(2015, 3, 29), 8384), (datetime.date(2015, 3, 30), 13796), (datetime.date(2015, 3, 31), 13979), (datetime.date(2015, 4, 1), 14182), (datetime.date(2015, 4, 2), 14296), (datetime.date(2015, 4, 3), 11503)])\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;merge_date_counts = {}\n&quot;,
+    &quot;\n&quot;,
+    &quot;for station_counts_key, station_counts_value in station_counts.items():\n&quot;,
+    &quot;    merge_day = {}\n&quot;,
+    &quot;    for merge_time, merge_count in station_counts_value:\n&quot;,
+    &quot;        new_date = merge_time\n&quot;,
+    &quot;        merge_day[new_date] = merge_day.get(new_date, 0) + merge_count\n&quot;,
+    &quot;    merge_date_counts[station_counts_key] = sorted(merge_day.items())\n&quot;,
+    &quot;\n&quot;,
+    &quot;print merge_date_counts.items()[0] &quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 25,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;((&#039;N325A&#039;, &#039;R218&#039;, &#039;ELMHURST AVE&#039;), 85825)\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;station_weekly_counts = {}\n&quot;,
+    &quot;\n&quot;,
+    &quot;for mdc_key, mdc_value in merge_date_counts.items():\n&quot;,
+    &quot;    for mdc_time, mdc_counts in mdc_value:\n&quot;,
+    &quot;        station_weekly_counts[mdc_key] = station_weekly_counts.get(mdc_key,0) +  mdc_counts\n&quot;,
+    &quot;\n&quot;,
+    &quot;print station_weekly_counts.items()[0]\n&quot;,
+    &quot;    &quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 27,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[((&#039;N506&#039;, &#039;R022&#039;, &#039;34 ST-HERALD SQ&#039;), 209056), ((&#039;R240&#039;, &#039;R047&#039;, &#039;42 ST-GRD CNTRL&#039;), 221191), ((&#039;R221&#039;, &#039;R170&#039;, &#039;14 ST-UNION SQ&#039;), 223896), ((&#039;N324&#039;, &#039;R018&#039;, &#039;ROOSEVELT AVE&#039;), 237683), ((&#039;N051&#039;, &#039;R084&#039;, &#039;59 ST-COLUMBUS&#039;), 239276), ((&#039;PTH08&#039;, &#039;R540&#039;, &#039;PATH WTC&#039;), 252382), ((&#039;R533&#039;, &#039;R055&#039;, &#039;MAIN ST&#039;), 259654), ((&#039;R138&#039;, &#039;R293&#039;, &#039;34 ST-PENN STA&#039;), 286149), ((&#039;R250&#039;, &#039;R179&#039;, &#039;86 ST&#039;), 327330), ((&#039;R238&#039;, &#039;R046&#039;, &#039;42 ST-GRD CNTRL&#039;), 389228)]\n&quot;,
+      &quot;\n&quot;,
+      &quot;\n&quot;,
+      &quot;[(&#039;59 ST-COLUMBUS&#039;, 454134), (&#039;125 ST&#039;, 484752), (&#039;96 ST&#039;, 485493), (&#039;42 ST-PA BUS TE&#039;, 576786), (&#039;42 ST-TIMES SQ&#039;, 606133), (&#039;14 ST-UNION SQ&#039;, 678753), (&#039;86 ST&#039;, 697851), (&#039;34 ST-HERALD SQ&#039;, 737871), (&#039;42 ST-GRD CNTRL&#039;, 882054), (&#039;34 ST-PENN STA&#039;, 1057842)]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;entire_station_data={}\n&quot;,
+    &quot;for station_unit_key, station_unit_value in station_weekly_counts.items():\n&quot;,
+    &quot;    esd_key = (station_unit_key[2])\n&quot;,
+    &quot;    entire_station_data[esd_key] = entire_station_data.get(esd_key,0) + station_unit_value\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;all_stations_unit_sorted = sorted(station_weekly_counts.items(),key = lambda x : x[1])\n&quot;,
+    &quot;print all_stations_unit_sorted[-10:]\n&quot;,
+    &quot;print \&quot;\&quot;\n&quot;,
+    &quot;print \&quot;\&quot;\n&quot;,
+    &quot;all_station_sorted = sorted(entire_station_data.items(),key = lambda x : x[1])\n&quot;,
+    &quot;a = all_station_sorted[-10:]\n&quot;,
+    &quot;\n&quot;,
+    &quot;print a\n&quot;,
+    &quot;\n&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 44,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: [
+    &quot;top_ten_station = all_stations_sorted[-10:]&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: 65,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: false
+   },
+   &quot;outputs&quot;: [
+    {
+     &quot;name&quot;: &quot;stdout&quot;,
+     &quot;output_type&quot;: &quot;stream&quot;,
+     &quot;text&quot;: [
+      &quot;[454134, 484752, 485493, 576786, 606133, 678753, 697851, 737871, 882054, 1057842]\n&quot;
+     ]
+    }
+   ],
+   &quot;source&quot;: [
+    &quot;List = [i[1] for i in a]\n&quot;,
+    &quot;print List\n&quot;
+   ]
+  },
+  {
+   &quot;cell_type&quot;: &quot;code&quot;,
+   &quot;execution_count&quot;: null,
+   &quot;metadata&quot;: {
+    &quot;collapsed&quot;: true
+   },
+   &quot;outputs&quot;: [],
+   &quot;source&quot;: []
+  },
+  {
+   &quot;cell_type&quot;: &quot;markdown&quot;,
+   &quot;metadata&quot;: {},
+   &quot;source&quot;: [
+    &quot;`day_counts` is a solution to Challenge 3.&quot;
+   ]
+  }
+ ],
+ &quot;metadata&quot;: {
+  &quot;kernelspec&quot;: {
+   &quot;display_name&quot;: &quot;Python 2&quot;,
+   &quot;language&quot;: &quot;python&quot;,
+   &quot;name&quot;: &quot;python2&quot;
+  },
+  &quot;language_info&quot;: {
+   &quot;codemirror_mode&quot;: {
+    &quot;name&quot;: &quot;ipython&quot;,
+    &quot;version&quot;: 2
+   },
+   &quot;file_extension&quot;: &quot;.py&quot;,
+   &quot;mimetype&quot;: &quot;text/x-python&quot;,
+   &quot;name&quot;: &quot;python&quot;,
+   &quot;nbconvert_exporter&quot;: &quot;python&quot;,
+   &quot;pygments_lexer&quot;: &quot;ipython2&quot;,
+   &quot;version&quot;: &quot;2.7.9&quot;
+  }
+ },
+ &quot;nbformat&quot;: 4,
+ &quot;nbformat_minor&quot;: 0
+}
+</pre>
+
+		<p class="file_page_meta no_print" style="line-height: 1.5rem;">
+			<label class="checkbox normal mini float_right no_top_padding no_min_width">
+				<input type="checkbox" id="file_preview_wrap_cb"> wrap long lines
+			</label>
+		</p>
+
+	</div>
+
+	<div id="comments_holder" class="clearfix clear_both">
+	<div class="col span_1_of_6"></div>
+	<div class="col span_4_of_6 no_right_padding">
+		<div id="file_page_comments">
+					</div>	
+		<form action="https://metis-dsbc.slack.com/files/haluu/F04BGLNQQ/benson.ipynb" 
+		id="file_comment_form" 
+					class="comment_form"
+				method="post">
+			<a href="/team/marcolunardi" class="member_preview_link" data-member-id="U048DMH2X" >
+			<span class="member_image thumb_36" style="background-image: url('https://secure.gravatar.com/avatar/20f8080f128aff4dbab48695b0caeb89.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-72.png')" data-thumb-size="36" data-member-id="U048DMH2X"></span>
+		</a>		
+		<input type="hidden" name="addcomment" value="1" />
+	<input type="hidden" name="crumb" value="s-1428696780-6d210886c6-☃" />
+
+	<textarea id="file_comment" data-el-id-to-keep-in-view="file_comment_submit_btn" class="comment_input small_bottom_margin" name="comment" wrap="virtual" ></textarea>
+	<span class="input_note float_left cloud_silver file_comment_tip">cmd+enter to submit</span>	<button id="file_comment_submit_btn" type="submit" class="btn float_right  ladda-button" data-style="expand-right"><span class="ladda-label">Add Comment</span></button>
+</form>
+
+<form action="https://metis-dsbc.slack.com/files/haluu/F04BGLNQQ/benson.ipynb" 
+		id="file_edit_comment_form" 
+					class="edit_comment_form hidden"
+				method="post">
+	<textarea id="file_edit_comment" class="comment_input small_bottom_margin" name="comment" wrap="virtual"></textarea><br>
+	<span class="input_note float_left cloud_silver file_comment_tip">cmd+enter to submit</span>	<input type="submit" class="save btn float_right " value="Save Changes" />
+	<button class="cancel btn btn_outline float_right small_right_margin ">Cancel</button>
+</form>	
+	</div>
+	<div class="col span_1_of_6"></div>
+</div>
+</div>
+
+	
+
+		
+	</div>
+	<div id="overlay"></div>
+</div>
+
+
+
+
+<script type="text/javascript">
+var cdn_url = 'https://slack.global.ssl.fastly.net';
+</script>
+			<script type="text/javascript">
+<!--
+	// common boot_data
+	var boot_data = {
+		start_ms: new Date().getTime(),
+		app: 'web',
+		is_mobile: false,
+		user_id: 'U048DMH2X',
+		version_ts: '1428696596',
+		version_uid: '59b551c2a34baf1688afcf291a6eb9bea7c84a09',
+		redir_domain: 'slack-redir.net',
+		api_url: '/api/',
+		team_url: 'https://metis-dsbc.slack.com/',
+		image_proxy_url: 'https://slack-imgs.com/',
+		api_token: 'xoxs-2640710388-4285731099-4407491355-b1a3971953',
+		feature_status: false,
+		feature_attachments_inline: false,
+		feature_search_attachments: false,
+		feature_chat_sounds: false,
+		feature_cmd_autocomplete: true,
+		feature_require_at: true,
+		feature_image_proxy: true,
+		feature_channel_eventlog_client: true,
+		feature_bot_users: true,
+		feature_post_previews: false,
+		feature_user_hidden_msgs: false,
+		feature_muting: true,
+		feature_macssb1_banner: true,
+		feature_winssb1_banner: true,
+		feature_latest_event_ts: true,
+		feature_no_redirects_in_ssb: true,
+		feature_referer_policy: true,
+		feature_client_exif_orientation_on_uploads: true,
+		feature_spaces: false,
+		feature_lato_fonts: true,
+		feature_at_channel_warning: true,
+		feature_at_channel_warning_non_admin_message: true,
+		feature_flexpane_rework: true,
+		feature_ms_on_space: true,
+		feature_a11y_keyboard_shortcuts: false,
+		feature_email_ingestion: false,
+		feature_email_integration: false,
+		feature_pins: true,
+		feature_join_leave_rollups: true,
+		feature_bot_message_label: true,
+		feature_file_url_private_conversion: false,
+		feature_spaces_in_windows: false,
+		feature_oldest_msg_storing: true,
+		feature_reactions: false,
+		feature_archive_viewer: true,
+		feature_new_btns_in_channel_list: false,
+		feature_pricing_page_refresh: false,
+		feature_client_date_formatting: false,
+		feature_more_field_in_message_attachments: false,
+
+		img: {
+			app_icon: 'https://slack.global.ssl.fastly.net/272a/img/slack_growl_icon.png'
+		},
+		page_needs_custom_emoji: false
+	};
+
+	
+
+	// client boot data
+			boot_data.login_data = JSON.parse('{\"ok\":true,\"self\":{\"id\":\"U048DMH2X\",\"name\":\"marcolunardi\",\"prefs\":{\"highlight_words\":\"\",\"user_colors\":\"\",\"color_names_in_list\":true,\"growls_enabled\":true,\"tz\":\"Europe\\/London\",\"push_dm_alert\":true,\"push_mention_alert\":true,\"push_everything\":false,\"push_idle_wait\":2,\"push_sound\":\"b2.mp3\",\"push_loud_channels\":\"\",\"push_mention_channels\":\"\",\"push_loud_channels_set\":\"\",\"email_alerts\":\"instant\",\"email_alerts_sleep_until\":0,\"email_misc\":true,\"email_weekly\":true,\"welcome_message_hidden\":false,\"all_channels_loud\":false,\"loud_channels\":\"\",\"never_channels\":\"\",\"loud_channels_set\":\"\",\"show_member_presence\":true,\"search_sort\":\"timestamp\",\"expand_inline_imgs\":true,\"expand_internal_inline_imgs\":true,\"expand_snippets\":false,\"posts_formatting_guide\":true,\"seen_welcome_2\":true,\"seen_ssb_prompt\":false,\"search_only_my_channels\":false,\"emoji_mode\":\"default\",\"emoji_use\":\"{}\",\"has_invited\":false,\"has_uploaded\":true,\"has_created_channel\":false,\"search_exclude_channels\":\"\",\"messages_theme\":\"default\",\"webapp_spellcheck\":true,\"no_joined_overlays\":false,\"no_created_overlays\":false,\"dropbox_enabled\":false,\"seen_user_menu_tip_card\":true,\"seen_team_menu_tip_card\":false,\"seen_channel_menu_tip_card\":false,\"seen_message_input_tip_card\":false,\"seen_channels_tip_card\":false,\"seen_domain_invite_reminder\":false,\"seen_member_invite_reminder\":false,\"seen_flexpane_tip_card\":false,\"seen_search_input_tip_card\":false,\"mute_sounds\":false,\"arrow_history\":false,\"tab_ui_return_selects\":true,\"obey_inline_img_limit\":true,\"new_msg_snd\":\"knock_brush.mp3\",\"collapsible\":false,\"collapsible_by_click\":true,\"require_at\":true,\"mac_ssb_bounce\":\"\",\"mac_ssb_bullet\":true,\"expand_non_media_attachments\":true,\"show_typing\":true,\"pagekeys_handled\":true,\"last_snippet_type\":\"\",\"display_real_names_override\":0,\"time24\":false,\"enter_is_special_in_tbt\":false,\"graphic_emoticons\":false,\"convert_emoticons\":true,\"autoplay_chat_sounds\":true,\"ss_emojis\":true,\"sidebar_behavior\":\"\",\"mark_msgs_read_immediately\":true,\"start_scroll_at_oldest\":true,\"snippet_editor_wrap_long_lines\":false,\"ls_disabled\":false,\"sidebar_theme\":\"default\",\"sidebar_theme_custom_values\":\"\",\"f_key_search\":false,\"k_key_omnibox\":true,\"speak_growls\":false,\"mac_speak_voice\":\"com.apple.speech.synthesis.voice.Alex\",\"mac_speak_speed\":250,\"comma_key_prefs\":false,\"at_channel_suppressed_channels\":\"\",\"push_at_channel_suppressed_channels\":\"\",\"prompted_for_email_disabling\":false,\"full_text_extracts\":false,\"no_text_in_notifications\":false,\"muted_channels\":\"\",\"no_macssb1_banner\":false,\"no_winssb1_banner\":false,\"privacy_policy_seen\":true,\"search_exclude_bots\":false,\"fuzzy_matching\":false,\"load_lato_2\":false,\"fuller_timestamps\":false,\"last_seen_at_channel_warning\":0,\"enable_flexpane_rework\":false,\"flex_resize_window\":false,\"msg_preview\":false,\"msg_preview_displaces\":true,\"msg_preview_persistent\":true,\"emoji_autocomplete_big\":false,\"winssb_run_from_tray\":true,\"email_compact_header\":false,\"two_factor_auth_enabled\":false,\"mentions_exclude_at_channels\":true,\"box_enabled\":false},\"created\":1427910925},\"team\":{\"id\":\"T02JULWBE\",\"name\":\"metis data science bootcamp\",\"email_domain\":\"\",\"domain\":\"metis-dsbc\",\"msg_edit_window_mins\":-1,\"prefs\":{\"default_channels\":[\"C02JULWBY\",\"C02JULWC8\"],\"msg_edit_window_mins\":-1,\"allow_message_deletion\":true,\"hide_referers\":true,\"display_real_names\":false,\"who_can_at_everyone\":\"regular\",\"who_can_at_channel\":\"ra\",\"warn_before_at_channel\":\"always\",\"who_can_create_channels\":\"regular\",\"who_can_archive_channels\":\"regular\",\"who_can_create_groups\":\"ra\",\"who_can_post_general\":\"ra\",\"who_can_kick_channels\":\"admin\",\"who_can_kick_groups\":\"regular\",\"retention_type\":0,\"retention_duration\":0,\"group_retention_type\":0,\"group_retention_duration\":0,\"dm_retention_type\":0,\"dm_retention_duration\":0,\"require_at_for_mention\":0,\"compliance_export_start\":0},\"icon\":{\"image_34\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_34.jpg\",\"image_44\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_44.jpg\",\"image_68\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_68.jpg\",\"image_88\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_88.jpg\",\"image_102\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_102.jpg\",\"image_132\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_132.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-03-20\\/4125090867_5a24b9149f563871b311_original.jpg\"},\"over_storage_limit\":false,\"plan\":\"\"},\"latest_event_ts\":\"1428696180.000000\",\"channels\":[{\"id\":\"C03B0MJ4K\",\"name\":\"02_winter_2015\",\"is_channel\":true,\"created\":1420846926,\"creator\":\"U036PFS9S\",\"is_archived\":false,\"is_general\":false,\"is_member\":false},{\"id\":\"C045BL9FT\",\"name\":\"03_spring_2015\",\"is_channel\":true,\"created\":1427294971,\"creator\":\"U03UFBUDW\",\"is_archived\":false,\"is_general\":false,\"is_member\":true,\"members\":[\"U036PFS9S\",\"U03BASWL6\",\"U03DWUWFZ\",\"U03UFBUDW\",\"U042S70BL\",\"U042TR7D7\",\"U047MABML\",\"U047MJWB0\",\"U047PAV7U\",\"U047PS1UG\",\"U047RNLAQ\",\"U0486BCQW\",\"U048A9Q03\",\"U048ASZ33\",\"U048BD0RF\",\"U048D2SRV\",\"U048DLDA1\",\"U048DMH2X\",\"U048GNS61\",\"U048V3KM5\",\"U048WPNGD\",\"U048ZV54Q\",\"U0490S0S2\",\"U0497T6NC\",\"U049RFHGM\",\"U04AGEH0F\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"Communication!\",\"creator\":\"U03UFBUDW\",\"last_set\":1427294972}},{\"id\":\"C02KW41BA\",\"name\":\"data_stories\",\"is_channel\":true,\"created\":1410967448,\"creator\":\"U02JUPFH8\",\"is_archived\":false,\"is_general\":false,\"is_member\":false},{\"id\":\"C02PF1PTV\",\"name\":\"define_plz\",\"is_channel\":true,\"created\":1413209318,\"creator\":\"U02JULWBJ\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02QV7XGG\",\"name\":\"fantasy_bball\",\"is_channel\":true,\"created\":1413912822,\"creator\":\"U02JT8WBT\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02UQTUMZ\",\"name\":\"fletcher-deliverable\",\"is_channel\":true,\"created\":1415650950,\"creator\":\"U02JULWBJ\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02JULWBY\",\"name\":\"general\",\"is_channel\":true,\"created\":1410290750,\"creator\":\"U02JULWBJ\",\"is_archived\":false,\"is_general\":true,\"is_member\":true,\"members\":[\"U02JT7MDR\",\"U02JT87NX\",\"U02JT8JBV\",\"U02JT8QTT\",\"U02JT8RQ1\",\"U02JT8T0M\",\"U02JT8WBT\",\"U02JT94QB\",\"U02JT9N7X\",\"U02JULWBJ\",\"U02JUMWEC\",\"U02JUN16E\",\"U02JUNA2N\",\"U02JUNF52\",\"U02JUNFR8\",\"U02JUP9T8\",\"U02JUPFH8\",\"U02M0HLN7\",\"U036PFS9S\",\"U03B8C4KH\",\"U03B8D8PZ\",\"U03B8GQDT\",\"U03B8NG27\",\"U03B912P7\",\"U03B914K3\",\"U03B97ZQX\",\"U03B9DCE3\",\"U03B9EJFF\",\"U03B9SRQV\",\"U03BAA9V0\",\"U03BAEJ9G\",\"U03BAPLHU\",\"U03BAQ9FJ\",\"U03BASWL6\",\"U03BB0DKS\",\"U03BCA5AK\",\"U03BDE4PN\",\"U03BFF4GU\",\"U03BFFXSU\",\"U03BFJ0S4\",\"U03DWUWFZ\",\"U03UFBUDW\",\"U042QR67D\",\"U042S70BL\",\"U042TR7D7\",\"U046FGHH3\",\"U046PPDMF\",\"U047MABML\",\"U047MJWB0\",\"U047PAV7U\",\"U047PS1UG\",\"U047RNLAQ\",\"U0486BCQW\",\"U048A9Q03\",\"U048ASZ33\",\"U048BD0RF\",\"U048D2SRV\",\"U048DLDA1\",\"U048DMH2X\",\"U048GNS61\",\"U048V3KM5\",\"U048WPNGD\",\"U048ZV54Q\",\"U0490S0S2\",\"U0497T6NC\",\"U049RFHGM\",\"U04AGEH0F\"],\"topic\":{\"value\":\"PPP\",\"creator\":\"U048D2SRV\",\"last_set\":1428011871},\"purpose\":{\"value\":\"This channel is for team-wide communication and announcements. All team members are in this channel.\",\"creator\":\"\",\"last_set\":0}},{\"id\":\"C02LE4JQ5\",\"name\":\"hey_lillian\",\"is_channel\":true,\"created\":1411392084,\"creator\":\"U02JULWBJ\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C037T1453\",\"name\":\"interview-prep-tips\",\"is_channel\":true,\"created\":1419105246,\"creator\":\"U02JT8T0M\",\"is_archived\":false,\"is_general\":false,\"is_member\":false},{\"id\":\"C044WQN58\",\"name\":\"job-postings\",\"is_channel\":true,\"created\":1427224373,\"creator\":\"U03UFBUDW\",\"is_archived\":false,\"is_general\":false,\"is_member\":false},{\"id\":\"C02K008FJ\",\"name\":\"luther-sources\",\"is_channel\":true,\"created\":1410372369,\"creator\":\"U02JULWBJ\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02LUL6FA\",\"name\":\"mcnulty-madmen\",\"is_channel\":true,\"created\":1411579430,\"creator\":\"U02JT8T0M\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C036981C1\",\"name\":\"nytimes-hackathon\",\"is_channel\":true,\"created\":1418487979,\"creator\":\"U02JT8WBT\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02JUNY2E\",\"name\":\"project_luther\",\"is_channel\":true,\"created\":1410291506,\"creator\":\"U02JT8WBT\",\"is_archived\":true,\"is_general\":false,\"is_member\":false},{\"id\":\"C02JULWC8\",\"name\":\"random\",\"is_channel\":true,\"created\":1410290750,\"creator\":\"U02JULWBJ\",\"is_archived\":false,\"is_general\":false,\"is_member\":true,\"members\":[\"U02JT7MDR\",\"U02JT87NX\",\"U02JT8JBV\",\"U02JT8QTT\",\"U02JT8RQ1\",\"U02JT8T0M\",\"U02JT8WBT\",\"U02JT94QB\",\"U02JT9N7X\",\"U02JUMWEC\",\"U02JUN16E\",\"U02JUNA2N\",\"U02JUNF52\",\"U02JUNFR8\",\"U02JUP9T8\",\"U02JUPFH8\",\"U02M0HLN7\",\"U036PFS9S\",\"U03B8C4KH\",\"U03B8D8PZ\",\"U03B8GQDT\",\"U03B8NG27\",\"U03B912P7\",\"U03B914K3\",\"U03B97ZQX\",\"U03B9DCE3\",\"U03B9EJFF\",\"U03B9SRQV\",\"U03BAA9V0\",\"U03BAEJ9G\",\"U03BAPLHU\",\"U03BAQ9FJ\",\"U03BASWL6\",\"U03BB0DKS\",\"U03BCA5AK\",\"U03BDE4PN\",\"U03BFF4GU\",\"U03BFFXSU\",\"U03BFJ0S4\",\"U03DWUWFZ\",\"U03UFBUDW\",\"U042QR67D\",\"U042S70BL\",\"U042TR7D7\",\"U046FGHH3\",\"U046PPDMF\",\"U047MABML\",\"U047MJWB0\",\"U047PAV7U\",\"U047PS1UG\",\"U047RNLAQ\",\"U0486BCQW\",\"U048A9Q03\",\"U048ASZ33\",\"U048BD0RF\",\"U048D2SRV\",\"U048DLDA1\",\"U048DMH2X\",\"U048GNS61\",\"U048V3KM5\",\"U048WPNGD\",\"U048ZV54Q\",\"U0490S0S2\",\"U0497T6NC\",\"U049RFHGM\",\"U04AGEH0F\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"A place for non-work banter, links, articles of interest, humor or anything else which you\'d like concentrated in some place other than work-related channels.\",\"creator\":\"\",\"last_set\":0}}],\"groups\":[{\"id\":\"G04AFUK4A\",\"name\":\"benson\",\"is_group\":true,\"created\":1428518902,\"creator\":\"U0486BCQW\",\"is_archived\":false,\"members\":[\"U047MJWB0\",\"U0486BCQW\",\"U048DLDA1\",\"U048DMH2X\"],\"topic\":{\"value\":\"\",\"creator\":\"\",\"last_set\":0},\"purpose\":{\"value\":\"project planning\",\"creator\":\"U0486BCQW\",\"last_set\":1428518903},\"is_open\":true}],\"ims\":[{\"id\":\"D048DMH3F\",\"is_im\":true,\"user\":\"USLACKBOT\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH6F\",\"is_im\":true,\"user\":\"U02JT8WBT\",\"created\":1427910926,\"is_user_deleted\":false},{\"id\":\"D048DMH3K\",\"is_im\":true,\"user\":\"U02JULWBJ\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH61\",\"is_im\":true,\"user\":\"U02M0HLN7\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH5F\",\"is_im\":true,\"user\":\"U03B8D8PZ\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH3T\",\"is_im\":true,\"user\":\"U03BAA9V0\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH4Z\",\"is_im\":true,\"user\":\"U03BAEJ9G\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH3X\",\"is_im\":true,\"user\":\"U03UFBUDW\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH45\",\"is_im\":true,\"user\":\"U042QR67D\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D049VRK8A\",\"is_im\":true,\"user\":\"U0486BCQW\",\"created\":1428432101,\"is_user_deleted\":false},{\"id\":\"D048DMH3M\",\"is_im\":true,\"user\":\"U048A9Q03\",\"created\":1427910925,\"is_user_deleted\":false},{\"id\":\"D048DMH4D\",\"is_im\":true,\"user\":\"U048DLDA1\",\"created\":1427910925,\"is_user_deleted\":false}],\"users\":[{\"id\":\"U02JT8JBV\",\"name\":\"aaron\",\"deleted\":false,\"status\":null,\"color\":\"3c989f\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"gold5201@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/8eeba912d7d81904e97108e5a3f42208.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0018-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/8eeba912d7d81904e97108e5a3f42208.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0018-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/8eeba912d7d81904e97108e5a3f42208.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0018-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/8eeba912d7d81904e97108e5a3f42208.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0018-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/8eeba912d7d81904e97108e5a3f42208.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0018.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03UFBUDW\",\"name\":\"ajschumacher\",\"deleted\":false,\"status\":null,\"color\":\"e475df\",\"real_name\":\"Aaron Schumacher\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Aaron\",\"last_name\":\"Schumacher\",\"phone\":\"917 972 4699\",\"real_name\":\"Aaron Schumacher\",\"real_name_normalized\":\"Aaron Schumacher\",\"email\":\"ajschumacher@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/bbab47cf39758fbe80d1dc0a28ce99a3.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/bbab47cf39758fbe80d1dc0a28ce99a3.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/bbab47cf39758fbe80d1dc0a28ce99a3.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/bbab47cf39758fbe80d1dc0a28ce99a3.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/bbab47cf39758fbe80d1dc0a28ce99a3.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010.png\"},\"is_admin\":true,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUN16E\",\"name\":\"alex.block\",\"deleted\":false,\"status\":null,\"color\":\"e96699\",\"real_name\":\"Alex Block\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Alex\",\"last_name\":\"Block\",\"title\":\"King\",\"skype\":\"\",\"phone\":\"\",\"real_name\":\"Alex Block\",\"real_name_normalized\":\"Alex Block\",\"email\":\"alex.block@icloud.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/554446d93da3fe58c540540d9bf599fd.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/554446d93da3fe58c540540d9bf599fd.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/554446d93da3fe58c540540d9bf599fd.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/554446d93da3fe58c540540d9bf599fd.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/554446d93da3fe58c540540d9bf599fd.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BFJ0S4\",\"name\":\"andymartens\",\"deleted\":false,\"status\":null,\"color\":\"4ec0d6\",\"real_name\":\"Andy Martens\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Andy\",\"last_name\":\"Martens\",\"real_name\":\"Andy Martens\",\"real_name_normalized\":\"Andy Martens\",\"email\":\"andyemailaddress@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/9e94185d630a5249151d71a45d742ea7.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/9e94185d630a5249151d71a45d742ea7.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/9e94185d630a5249151d71a45d742ea7.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/9e94185d630a5249151d71a45d742ea7.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/9e94185d630a5249151d71a45d742ea7.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0015.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT8T0M\",\"name\":\"bkey\",\"deleted\":false,\"status\":null,\"color\":\"5b89d5\",\"real_name\":\"bridget\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"bridget\",\"last_name\":\"\",\"title\":\"stuff and things\",\"skype\":\"\",\"phone\":\"203 980 9038\",\"real_name\":\"bridget\",\"real_name_normalized\":\"bridget\",\"email\":\"bkey23@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7fe3b3f8530ef53f225fa2510594dd55.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0023-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7fe3b3f8530ef53f225fa2510594dd55.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0023-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7fe3b3f8530ef53f225fa2510594dd55.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0023-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7fe3b3f8530ef53f225fa2510594dd55.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0023-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7fe3b3f8530ef53f225fa2510594dd55.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0023.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U036PFS9S\",\"name\":\"bo\",\"deleted\":false,\"status\":null,\"color\":\"235e5b\",\"real_name\":\"Bo Peng\",\"tz\":\"America\\/Chicago\",\"tz_label\":\"Central Daylight Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Bo\",\"last_name\":\"Peng\",\"real_name\":\"Bo Peng\",\"real_name_normalized\":\"Bo Peng\",\"email\":\"bo@datasco.pe\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ec3bc0cf6b6346104aa9b57b4137744a.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0004-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ec3bc0cf6b6346104aa9b57b4137744a.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0004-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ec3bc0cf6b6346104aa9b57b4137744a.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0004-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ec3bc0cf6b6346104aa9b57b4137744a.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0004-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ec3bc0cf6b6346104aa9b57b4137744a.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0004.png\"},\"is_admin\":true,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U047PS1UG\",\"name\":\"briamkin\",\"deleted\":false,\"status\":null,\"color\":\"8469bc\",\"real_name\":\"Brian Kim\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Brian\",\"last_name\":\"Kim\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4280755778_6e24cbeee7928663d280_original.jpg\",\"real_name\":\"Brian Kim\",\"real_name_normalized\":\"Brian Kim\",\"email\":\"briam.kin@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B914K3\",\"name\":\"derekgossi\",\"deleted\":false,\"status\":null,\"color\":\"43761b\",\"real_name\":\"Derek Gossi\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Derek\",\"last_name\":\"Gossi\",\"real_name\":\"Derek Gossi\",\"real_name_normalized\":\"Derek Gossi\",\"email\":\"gossiderek@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c146137fd16ba28d3bb950400257bddb.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c146137fd16ba28d3bb950400257bddb.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c146137fd16ba28d3bb950400257bddb.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c146137fd16ba28d3bb950400257bddb.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c146137fd16ba28d3bb950400257bddb.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT94QB\",\"name\":\"dmelass\",\"deleted\":false,\"status\":null,\"color\":\"df3dc0\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"dmelass@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94192175caee4db84c054db9bba19cba.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94192175caee4db84c054db9bba19cba.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0003-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94192175caee4db84c054db9bba19cba.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94192175caee4db84c054db9bba19cba.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94192175caee4db84c054db9bba19cba.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B9EJFF\",\"name\":\"dnance\",\"deleted\":false,\"status\":null,\"color\":\"de5f24\",\"real_name\":\"David Nance\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"David\",\"last_name\":\"Nance\",\"real_name\":\"David Nance\",\"real_name_normalized\":\"David Nance\",\"email\":\"acedhr@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7ac4ffdab21aec303310f1edb712664e.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7ac4ffdab21aec303310f1edb712664e.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7ac4ffdab21aec303310f1edb712664e.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7ac4ffdab21aec303310f1edb712664e.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7ac4ffdab21aec303310f1edb712664e.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048A9Q03\",\"name\":\"dshincd\",\"deleted\":false,\"status\":null,\"color\":\"4d5e26\",\"real_name\":\"Daniel Shin\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Daniel\",\"last_name\":\"Shin\",\"real_name\":\"Daniel Shin\",\"real_name_normalized\":\"Daniel Shin\",\"email\":\"danieldshin@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34638261ca1bb9d178a637a0f237c63.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0009-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34638261ca1bb9d178a637a0f237c63.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0009-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34638261ca1bb9d178a637a0f237c63.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0009-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34638261ca1bb9d178a637a0f237c63.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0009-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c34638261ca1bb9d178a637a0f237c63.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0009.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B912P7\",\"name\":\"dustin\",\"deleted\":false,\"status\":null,\"color\":\"d1707d\",\"real_name\":\"Dustin Schwenk\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Dustin\",\"last_name\":\"Schwenk\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3383068773_d8bc782058bd392a6f8a_original.jpg\",\"real_name\":\"Dustin Schwenk\",\"real_name_normalized\":\"Dustin Schwenk\",\"email\":\"drschwenk@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BAPLHU\",\"name\":\"emmanuele\",\"deleted\":false,\"status\":null,\"color\":\"ea2977\",\"real_name\":\"Emmanuele Salvati\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Emmanuele\",\"last_name\":\"Salvati\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_72.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-11\\/3384821228_1c9e201686848d3aa646_original.jpg\",\"skype\":\"emmanuelepig\",\"title\":\"The more I think about data science, the more I want to bus tables.\",\"phone\":\"\",\"real_name\":\"Emmanuele Salvati\",\"real_name_normalized\":\"Emmanuele Salvati\",\"email\":\"emmanuele.salvati@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUMWEC\",\"name\":\"eric_r_xu\",\"deleted\":false,\"status\":null,\"color\":\"674b1b\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-23\\/2701914953_original.jpg\",\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"eric.r.xu@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT87NX\",\"name\":\"erik\",\"deleted\":false,\"status\":null,\"color\":\"e7392d\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"skip@skip.sx\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fe6aee8828779fbb53976a4898808782.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0005-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fe6aee8828779fbb53976a4898808782.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0005-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fe6aee8828779fbb53976a4898808782.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0005-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fe6aee8828779fbb53976a4898808782.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0005-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fe6aee8828779fbb53976a4898808782.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0005.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BFF4GU\",\"name\":\"fdurant\",\"deleted\":false,\"status\":null,\"color\":\"8d4b84\",\"real_name\":\"Frederik Durant\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Frederik\",\"last_name\":\"Durant\",\"real_name\":\"Frederik Durant\",\"real_name_normalized\":\"Frederik Durant\",\"email\":\"frederik.durant@pandora.be\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd46c22aee5ab772f1704319d415073c.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0006-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd46c22aee5ab772f1704319d415073c.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0006-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd46c22aee5ab772f1704319d415073c.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0006-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd46c22aee5ab772f1704319d415073c.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0006-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd46c22aee5ab772f1704319d415073c.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0006.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U04AGEH0F\",\"name\":\"fmelp\",\"deleted\":false,\"status\":null,\"color\":\"2b6836\",\"real_name\":\"Francesco Melpignano\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Francesco\",\"last_name\":\"Melpignano\",\"real_name\":\"Francesco Melpignano\",\"real_name_normalized\":\"Francesco Melpignano\",\"email\":\"melpignanof@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/52477171c694bf3b54f67cc883f5d225.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/52477171c694bf3b54f67cc883f5d225.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/52477171c694bf3b54f67cc883f5d225.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/52477171c694bf3b54f67cc883f5d225.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/52477171c694bf3b54f67cc883f5d225.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BASWL6\",\"name\":\"gab_ball\",\"deleted\":false,\"status\":null,\"color\":\"d55aef\",\"real_name\":\"Gabriele Ballarin\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Gabriele\",\"last_name\":\"Ballarin\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512087314_490582a65b71db6ff25f_original.jpg\",\"real_name\":\"Gabriele Ballarin\",\"real_name_normalized\":\"Gabriele Ballarin\",\"email\":\"gabriele.ballarin@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT8WBT\",\"name\":\"gabegluck\",\"deleted\":false,\"status\":null,\"color\":\"2b6836\",\"real_name\":\"Gabriel Gluck\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Gabriel\",\"last_name\":\"Gluck\",\"title\":\"how do i leave a channel\",\"real_name\":\"Gabriel Gluck\",\"real_name_normalized\":\"Gabriel Gluck\",\"email\":\"gabegluck@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/1605233f2d08e0e97025366514c94547.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0001-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/1605233f2d08e0e97025366514c94547.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/1605233f2d08e0e97025366514c94547.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/1605233f2d08e0e97025366514c94547.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/1605233f2d08e0e97025366514c94547.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B97ZQX\",\"name\":\"gavin\",\"deleted\":false,\"status\":null,\"color\":\"8f4a2b\",\"real_name\":\"Gavin Foster\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Gavin\",\"last_name\":\"Foster\",\"real_name\":\"Gavin Foster\",\"real_name_normalized\":\"Gavin Foster\",\"email\":\"gavfos@yahoo.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/29b77d304a7c5b6fbcbe17dea1750388.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/29b77d304a7c5b6fbcbe17dea1750388.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/29b77d304a7c5b6fbcbe17dea1750388.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/29b77d304a7c5b6fbcbe17dea1750388.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/29b77d304a7c5b6fbcbe17dea1750388.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BCA5AK\",\"name\":\"gdelre\",\"deleted\":false,\"status\":null,\"color\":\"3c8c69\",\"real_name\":\"Grace Del Re\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Grace\",\"last_name\":\"Del Re\",\"real_name\":\"Grace Del Re\",\"real_name_normalized\":\"Grace Del Re\",\"email\":\"gracedelre@nyu.edu\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fb2051600d413517c96c992a5f403b45.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0002-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fb2051600d413517c96c992a5f403b45.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0002-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fb2051600d413517c96c992a5f403b45.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0002-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fb2051600d413517c96c992a5f403b45.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0002-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fb2051600d413517c96c992a5f403b45.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0002.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0486BCQW\",\"name\":\"gfsoileau\",\"deleted\":false,\"status\":null,\"color\":\"3c989f\",\"real_name\":\"Gina Soileau\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Gina\",\"last_name\":\"Soileau\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_72.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4278453340_000cb3ad51a9f075ab07_original.jpg\",\"real_name\":\"Gina Soileau\",\"real_name_normalized\":\"Gina Soileau\",\"email\":\"gfsoileau@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B9DCE3\",\"name\":\"gresor\",\"deleted\":false,\"status\":null,\"color\":\"902d59\",\"real_name\":\"George Resor\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"George\",\"last_name\":\"Resor\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-15\\/3416617417_c282573c29aa2bca00e8_original.jpg\",\"real_name\":\"George Resor\",\"real_name_normalized\":\"George Resor\",\"email\":\"george.resor@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048DLDA1\",\"name\":\"haluu\",\"deleted\":false,\"status\":null,\"color\":\"73769d\",\"real_name\":\"Ha Bao Luu\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Ha Bao\",\"last_name\":\"Luu\",\"real_name\":\"Ha Bao Luu\",\"real_name_normalized\":\"Ha Bao Luu\",\"email\":\"luu_baoha@yahoo.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/361198fbac677f13fba43df17d8f039d.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/361198fbac677f13fba43df17d8f039d.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/361198fbac677f13fba43df17d8f039d.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/361198fbac677f13fba43df17d8f039d.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/361198fbac677f13fba43df17d8f039d.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B9SRQV\",\"name\":\"henri\",\"deleted\":false,\"status\":null,\"color\":\"a2a5dc\",\"real_name\":\"Henri Dwyer\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Henri\",\"last_name\":\"Dwyer\",\"real_name\":\"Henri Dwyer\",\"real_name_normalized\":\"Henri Dwyer\",\"email\":\"henri.dwyer@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a1384d32a4768d48e62185eb243a4f3c.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a1384d32a4768d48e62185eb243a4f3c.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a1384d32a4768d48e62185eb243a4f3c.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0026-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a1384d32a4768d48e62185eb243a4f3c.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/a1384d32a4768d48e62185eb243a4f3c.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0026.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUP9T8\",\"name\":\"ian\",\"deleted\":false,\"status\":null,\"color\":\"bb86b7\",\"real_name\":\"Ian C\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Ian\",\"last_name\":\"C\",\"skype\":\"idcrane\",\"real_name\":\"Ian C\",\"real_name_normalized\":\"Ian C\",\"email\":\"ian@idcrane.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d37d8751255b4c20781f9548aec09452.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0016-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d37d8751255b4c20781f9548aec09452.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0016-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d37d8751255b4c20781f9548aec09452.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0016-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d37d8751255b4c20781f9548aec09452.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0016-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/d37d8751255b4c20781f9548aec09452.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0016.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048WPNGD\",\"name\":\"ilya\",\"deleted\":false,\"status\":null,\"color\":\"674b1b\",\"real_name\":\"Ilya Altshteyn\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Ilya\",\"last_name\":\"Altshteyn\",\"real_name\":\"Ilya Altshteyn\",\"real_name_normalized\":\"Ilya Altshteyn\",\"email\":\"ilyaaltshteyn@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7f2e6c3f6dfe981a006da47e42380bf1.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7f2e6c3f6dfe981a006da47e42380bf1.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7f2e6c3f6dfe981a006da47e42380bf1.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7f2e6c3f6dfe981a006da47e42380bf1.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/7f2e6c3f6dfe981a006da47e42380bf1.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0497T6NC\",\"name\":\"irbot\",\"deleted\":false,\"status\":null,\"color\":\"5b89d5\",\"real_name\":\"\",\"tz\":null,\"tz_label\":\"Pacific Daylight Time\",\"tz_offset\":-25200,\"profile\":{\"bot_id\":\"B0497T6N6\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4313991598_f17d1a9a34248885ed14_original.jpg\",\"real_name\":\"\",\"real_name_normalized\":\"\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":true},{\"id\":\"U02JUPFH8\",\"name\":\"irmak\",\"deleted\":false,\"status\":null,\"color\":\"5a4592\",\"real_name\":\"Irmak Sirer\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640805674_original.jpg\",\"first_name\":\"Irmak\",\"last_name\":\"Sirer\",\"phone\":\"2245225966\",\"title\":\"Heroic Instructor and Icon of Awesomeness\",\"real_name\":\"Irmak Sirer\",\"real_name_normalized\":\"Irmak Sirer\",\"email\":\"irmak@datasco.pe\"},\"is_admin\":true,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U049RFHGM\",\"name\":\"iwona\",\"deleted\":false,\"status\":null,\"color\":\"684b6c\",\"real_name\":\"Iwona Pawelczak\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Iwona\",\"last_name\":\"Pawelczak\",\"real_name\":\"Iwona Pawelczak\",\"real_name_normalized\":\"Iwona Pawelczak\",\"email\":\"iwona.pawelczak@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd0fc8eeffcbd0d3cbc0e6a7ae701a83.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd0fc8eeffcbd0d3cbc0e6a7ae701a83.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd0fc8eeffcbd0d3cbc0e6a7ae701a83.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd0fc8eeffcbd0d3cbc0e6a7ae701a83.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/dd0fc8eeffcbd0d3cbc0e6a7ae701a83.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048BD0RF\",\"name\":\"jaclynweiser\",\"deleted\":false,\"status\":null,\"color\":\"dc7dbb\",\"real_name\":\"Jaclyn Weiser\",\"tz\":\"America\\/Chicago\",\"tz_label\":\"Central Daylight Time\",\"tz_offset\":-18000,\"profile\":{\"first_name\":\"Jaclyn\",\"last_name\":\"Weiser\",\"real_name\":\"Jaclyn Weiser\",\"real_name_normalized\":\"Jaclyn Weiser\",\"email\":\"weiserjaclyn@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/861c6f3f5e664c0f7780bc1c14feee4b.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/861c6f3f5e664c0f7780bc1c14feee4b.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/861c6f3f5e664c0f7780bc1c14feee4b.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/861c6f3f5e664c0f7780bc1c14feee4b.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/861c6f3f5e664c0f7780bc1c14feee4b.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U046FGHH3\",\"name\":\"jasonamoss13\",\"deleted\":false,\"status\":null,\"color\":\"aba727\",\"real_name\":\"Jason Moss\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Jason\",\"last_name\":\"Moss\",\"real_name\":\"Jason Moss\",\"real_name_normalized\":\"Jason Moss\",\"email\":\"jason@thisismetis.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35b09b2def6386ec4b4b4e2bef7eaba5.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35b09b2def6386ec4b4b4e2bef7eaba5.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35b09b2def6386ec4b4b4e2bef7eaba5.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35b09b2def6386ec4b4b4e2bef7eaba5.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35b09b2def6386ec4b4b4e2bef7eaba5.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0008.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U047RNLAQ\",\"name\":\"jdziados\",\"deleted\":false,\"status\":null,\"color\":\"9f69e7\",\"real_name\":\"Joe Dziados\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Joe\",\"last_name\":\"Dziados\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4263787734_ae462fa9ee4ae20f7927_original.jpg\",\"real_name\":\"Joe Dziados\",\"real_name_normalized\":\"Joe Dziados\",\"email\":\"joedziados@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BFFXSU\",\"name\":\"jendai\",\"deleted\":false,\"status\":null,\"color\":\"84b22f\",\"real_name\":\"Jennifer Dai\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Jennifer\",\"last_name\":\"Dai\",\"real_name\":\"Jennifer Dai\",\"real_name_normalized\":\"Jennifer Dai\",\"email\":\"jendai2012@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c099cf15542a10ef72f817321177ce3d.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c099cf15542a10ef72f817321177ce3d.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c099cf15542a10ef72f817321177ce3d.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c099cf15542a10ef72f817321177ce3d.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/c099cf15542a10ef72f817321177ce3d.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048ZV54Q\",\"name\":\"jeradf\",\"deleted\":false,\"status\":null,\"color\":\"e96699\",\"real_name\":\"Jerad Fields\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Jerad\",\"last_name\":\"Fields\",\"real_name\":\"Jerad Fields\",\"real_name_normalized\":\"Jerad Fields\",\"email\":\"jeradfields@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94d1bc20c97a249d9fe275415ab830e0.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94d1bc20c97a249d9fe275415ab830e0.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94d1bc20c97a249d9fe275415ab830e0.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94d1bc20c97a249d9fe275415ab830e0.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/94d1bc20c97a249d9fe275415ab830e0.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT7MDR\",\"name\":\"jercoh\",\"deleted\":false,\"status\":null,\"color\":\"4bbe2e\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2640735078_original.jpg\",\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"jeremcoh@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BDE4PN\",\"name\":\"jessfreaner\",\"deleted\":false,\"status\":null,\"color\":\"827327\",\"real_name\":\"Jessica Freaner\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Jessica\",\"last_name\":\"Freaner\",\"real_name\":\"Jessica Freaner\",\"real_name_normalized\":\"Jessica Freaner\",\"email\":\"jessicafreaner@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b3190ff12717b6c06b0790bfafaad9ef.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b3190ff12717b6c06b0790bfafaad9ef.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b3190ff12717b6c06b0790bfafaad9ef.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b3190ff12717b6c06b0790bfafaad9ef.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b3190ff12717b6c06b0790bfafaad9ef.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0015.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BB0DKS\",\"name\":\"jgerardsimcock\",\"deleted\":false,\"status\":null,\"color\":\"e06b56\",\"real_name\":\"Justin Gerard Simcock\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Justin\",\"last_name\":\"Gerard Simcock\",\"real_name\":\"Justin Gerard Simcock\",\"real_name_normalized\":\"Justin Gerard Simcock\",\"email\":\"justin_simcock@yahoo.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/5a32cb61329b77a45e4398cde24dfac6.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/5a32cb61329b77a45e4398cde24dfac6.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/5a32cb61329b77a45e4398cde24dfac6.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/5a32cb61329b77a45e4398cde24dfac6.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/5a32cb61329b77a45e4398cde24dfac6.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0010.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT8RQ1\",\"name\":\"jkcheng\",\"deleted\":false,\"status\":null,\"color\":\"684b6c\",\"real_name\":\"Jeffrey Cheng\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Jeffrey\",\"last_name\":\"Cheng\",\"title\":\"\",\"skype\":\"\",\"phone\":\"\",\"real_name\":\"Jeffrey Cheng\",\"real_name_normalized\":\"Jeffrey Cheng\",\"email\":\"jeff.k.cheng@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fbf566cad781300428a4abfc3e63352d.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fbf566cad781300428a4abfc3e63352d.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fbf566cad781300428a4abfc3e63352d.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fbf566cad781300428a4abfc3e63352d.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/fbf566cad781300428a4abfc3e63352d.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0007.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT8QTT\",\"name\":\"kate\",\"deleted\":false,\"status\":null,\"color\":\"e0a729\",\"real_name\":\"\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"ullalume@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/405a4aca6db7e628e9bcf3e3883d5ae5.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/405a4aca6db7e628e9bcf3e3883d5ae5.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/405a4aca6db7e628e9bcf3e3883d5ae5.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0026-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/405a4aca6db7e628e9bcf3e3883d5ae5.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0026-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/405a4aca6db7e628e9bcf3e3883d5ae5.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0026.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUNFR8\",\"name\":\"kevinmars\",\"deleted\":false,\"status\":null,\"color\":\"9b3b45\",\"real_name\":\"Kevin Mars\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Kevin\",\"last_name\":\"Mars\",\"title\":\"playa\",\"skype\":\"\",\"phone\":\"\",\"real_name\":\"Kevin Mars\",\"real_name_normalized\":\"Kevin Mars\",\"email\":\"kevin.mardakhayev@baruchmail.cuny.edu\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/031c53799974e4b01f449a0427524bd5.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0001-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/031c53799974e4b01f449a0427524bd5.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/031c53799974e4b01f449a0427524bd5.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/031c53799974e4b01f449a0427524bd5.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/031c53799974e4b01f449a0427524bd5.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U046PPDMF\",\"name\":\"laura\",\"deleted\":false,\"status\":null,\"color\":\"965d1b\",\"real_name\":\"Laura Montemayor\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Laura\",\"last_name\":\"Montemayor\",\"real_name\":\"Laura Montemayor\",\"real_name_normalized\":\"Laura Montemayor\",\"email\":\"laura@thisismetis.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35bb658d59926553dfce6b3e52422be1.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35bb658d59926553dfce6b3e52422be1.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35bb658d59926553dfce6b3e52422be1.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35bb658d59926553dfce6b3e52422be1.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/35bb658d59926553dfce6b3e52422be1.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JULWBJ\",\"name\":\"laurie\",\"deleted\":false,\"status\":null,\"color\":\"9f69e7\",\"real_name\":\"Laurie Skelly\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Laurie\",\"last_name\":\"Skelly\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639324451_original.jpg\",\"phone\":\"6185939705\",\"title\":\"whipcracker\",\"real_name\":\"Laurie Skelly\",\"real_name_normalized\":\"Laurie Skelly\",\"email\":\"laurie@datasco.pe\"},\"is_admin\":true,\"is_owner\":true,\"is_primary_owner\":true,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U042TR7D7\",\"name\":\"leahnicolai\",\"deleted\":false,\"status\":null,\"color\":\"7d414c\",\"real_name\":\"Leah Nicolai\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Leah\",\"last_name\":\"Nicolai\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-06\\/4340880327_157d257cd466d5322054_original.jpg\",\"real_name\":\"Leah Nicolai\",\"real_name_normalized\":\"Leah Nicolai\",\"email\":\"leah@thisismetis.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U042QR67D\",\"name\":\"lillian\",\"deleted\":false,\"status\":null,\"color\":\"a72f79\",\"real_name\":\"Lillian Landrum\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Lillian\",\"last_name\":\"Landrum\",\"real_name\":\"Lillian Landrum\",\"real_name_normalized\":\"Lillian Landrum\",\"email\":\"lillian@thisismetis.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/98ee2889d6626be0ba132ccc9d37f1b8.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0000-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/98ee2889d6626be0ba132ccc9d37f1b8.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0000-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/98ee2889d6626be0ba132ccc9d37f1b8.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0000-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/98ee2889d6626be0ba132ccc9d37f1b8.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0000-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/98ee2889d6626be0ba132ccc9d37f1b8.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0000.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U047MJWB0\",\"name\":\"luc\",\"deleted\":false,\"status\":null,\"color\":\"e85d72\",\"real_name\":\"Luc Demortier\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Luc\",\"last_name\":\"Demortier\",\"real_name\":\"Luc Demortier\",\"real_name_normalized\":\"Luc Demortier\",\"email\":\"luc.demortier@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/16ce65171d5a197dff64e37a2e175dcc.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/16ce65171d5a197dff64e37a2e175dcc.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/16ce65171d5a197dff64e37a2e175dcc.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/16ce65171d5a197dff64e37a2e175dcc.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/16ce65171d5a197dff64e37a2e175dcc.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B8GQDT\",\"name\":\"lylepayne\",\"deleted\":false,\"status\":null,\"color\":\"a63024\",\"real_name\":\"Lyle Payne Morgan\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Lyle\",\"last_name\":\"Payne Morgan\",\"real_name\":\"Lyle Payne Morgan\",\"real_name_normalized\":\"Lyle Payne Morgan\",\"email\":\"lyle.morgan@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/4445953973250b22a8e221f2e555bdc0.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/4445953973250b22a8e221f2e555bdc0.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/4445953973250b22a8e221f2e555bdc0.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/4445953973250b22a8e221f2e555bdc0.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/4445953973250b22a8e221f2e555bdc0.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048DMH2X\",\"name\":\"marcolunardi\",\"deleted\":false,\"status\":null,\"color\":\"b14cbc\",\"real_name\":\"Marco Lunardi\",\"tz\":\"Europe\\/London\",\"tz_label\":\"British Summer Time\",\"tz_offset\":3600,\"profile\":{\"first_name\":\"Marco\",\"last_name\":\"Lunardi\",\"real_name\":\"Marco Lunardi\",\"real_name_normalized\":\"Marco Lunardi\",\"email\":\"marco@marcolunardi.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/20f8080f128aff4dbab48695b0caeb89.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/20f8080f128aff4dbab48695b0caeb89.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/20f8080f128aff4dbab48695b0caeb89.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/20f8080f128aff4dbab48695b0caeb89.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/20f8080f128aff4dbab48695b0caeb89.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0020.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U042S70BL\",\"name\":\"mmayraud\",\"deleted\":false,\"status\":null,\"color\":\"619a4f\",\"real_name\":\"Megan Ayraud\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Megan\",\"last_name\":\"Ayraud\",\"real_name\":\"Megan Ayraud\",\"real_name_normalized\":\"Megan Ayraud\",\"email\":\"megan@thisismetis.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/956c5ac5e830578ebf886f50f28c9cb9.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/956c5ac5e830578ebf886f50f28c9cb9.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/956c5ac5e830578ebf886f50f28c9cb9.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/956c5ac5e830578ebf886f50f28c9cb9.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/956c5ac5e830578ebf886f50f28c9cb9.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BAQ9FJ\",\"name\":\"mmoliterno\",\"deleted\":false,\"status\":null,\"color\":\"50a0cf\",\"real_name\":\"Michael Moliterno\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Michael\",\"last_name\":\"Moliterno\",\"real_name\":\"Michael Moliterno\",\"real_name_normalized\":\"Michael Moliterno\",\"email\":\"michael.moliterno@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/eaf9190f966be1da89bc1fc6c4bcb95d.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/eaf9190f966be1da89bc1fc6c4bcb95d.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0003-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/eaf9190f966be1da89bc1fc6c4bcb95d.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/eaf9190f966be1da89bc1fc6c4bcb95d.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/eaf9190f966be1da89bc1fc6c4bcb95d.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0003.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B8C4KH\",\"name\":\"mpalazz\",\"deleted\":false,\"status\":null,\"color\":\"9e3997\",\"real_name\":\"Michael Palazzolo\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Michael\",\"last_name\":\"Palazzolo\",\"title\":\"\",\"skype\":\"mikeb0t\",\"phone\":\"\",\"real_name\":\"Michael Palazzolo\",\"real_name_normalized\":\"Michael Palazzolo\",\"email\":\"michael.palazzolo@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ce0d8a04c3fe8c34098ceeaaf39a269e.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ce0d8a04c3fe8c34098ceeaaf39a269e.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ce0d8a04c3fe8c34098ceeaaf39a269e.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ce0d8a04c3fe8c34098ceeaaf39a269e.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/ce0d8a04c3fe8c34098ceeaaf39a269e.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0022.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BAEJ9G\",\"name\":\"nasdag\",\"deleted\":false,\"status\":null,\"color\":\"385a86\",\"real_name\":\"Philippe Dagher\",\"tz\":\"America\\/New_York\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Philippe\",\"last_name\":\"Dagher\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-25\\/3512362747_c2e58561ee0f5c4b7110_original.jpg\",\"title\":\"\",\"skype\":\"nasdag333\",\"phone\":\"+16173098778\",\"real_name\":\"Philippe Dagher\",\"real_name_normalized\":\"Philippe Dagher\",\"email\":\"nasdag@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03BAA9V0\",\"name\":\"nelson\",\"deleted\":false,\"status\":null,\"color\":\"53b759\",\"real_name\":\"Nelson Spencer\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Nelson\",\"last_name\":\"Spencer\",\"real_name\":\"Nelson Spencer\",\"real_name_normalized\":\"Nelson Spencer\",\"email\":\"nspencer08@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/37e8e68641b784245a836291dfeb7e6b.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/37e8e68641b784245a836291dfeb7e6b.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/37e8e68641b784245a836291dfeb7e6b.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/37e8e68641b784245a836291dfeb7e6b.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/37e8e68641b784245a836291dfeb7e6b.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0012.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048GNS61\",\"name\":\"nick_smit\",\"deleted\":false,\"status\":null,\"color\":\"4bbe2e\",\"real_name\":\"Nick Smit\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Nick\",\"last_name\":\"Smit\",\"title\":\"\",\"skype\":\"nick.smit.1987\",\"phone\":\"+19178604984\",\"real_name\":\"Nick Smit\",\"real_name_normalized\":\"Nick Smit\",\"email\":\"nick.smit@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e4e15de2419b62c69537614dc94816ad.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e4e15de2419b62c69537614dc94816ad.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e4e15de2419b62c69537614dc94816ad.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e4e15de2419b62c69537614dc94816ad.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0007-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e4e15de2419b62c69537614dc94816ad.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0007.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02M0HLN7\",\"name\":\"pbuffa\",\"deleted\":false,\"status\":null,\"color\":\"db3150\",\"real_name\":\"Paul Buffa\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Paul\",\"last_name\":\"Buffa\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3392020674_c5c492a2d4a06721b83a_original.jpg\",\"title\":\"TA\",\"skype\":\"np\",\"phone\":\"\",\"real_name\":\"Paul Buffa\",\"real_name_normalized\":\"Paul Buffa\",\"email\":\"paul.buffa@kaplan.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U0490S0S2\",\"name\":\"pniessen\",\"deleted\":false,\"status\":null,\"color\":\"e0a729\",\"real_name\":\"Peter Niessen\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Peter\",\"last_name\":\"Niessen\",\"real_name\":\"Peter Niessen\",\"real_name_normalized\":\"Peter Niessen\",\"email\":\"peter_niessen@yahoo.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/701a037bba7b6e32610f347fd1e6858d.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/701a037bba7b6e32610f347fd1e6858d.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/701a037bba7b6e32610f347fd1e6858d.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/701a037bba7b6e32610f347fd1e6858d.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0015-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/701a037bba7b6e32610f347fd1e6858d.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0015.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U047MABML\",\"name\":\"potatochip\",\"deleted\":false,\"status\":null,\"color\":\"bd9336\",\"real_name\":\"Aaron Mangum\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Aaron\",\"last_name\":\"Mangum\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4259511002_e537f0cb8fa2ccc1d77c_original.jpg\",\"real_name\":\"Aaron Mangum\",\"real_name_normalized\":\"Aaron Mangum\",\"email\":\"mangum.aaron@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUNA2N\",\"name\":\"praveen\",\"deleted\":false,\"status\":null,\"color\":\"99a949\",\"real_name\":\"Praveen Rathinavelu\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Praveen\",\"last_name\":\"Rathinavelu\",\"real_name\":\"Praveen Rathinavelu\",\"real_name_normalized\":\"Praveen Rathinavelu\",\"email\":\"praveen.rt@gmail.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/266f1559c14f439c81f136347e190410.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/266f1559c14f439c81f136347e190410.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/266f1559c14f439c81f136347e190410.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/266f1559c14f439c81f136347e190410.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/266f1559c14f439c81f136347e190410.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0011.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JUNF52\",\"name\":\"rajini\",\"deleted\":false,\"status\":null,\"color\":\"4cc091\",\"real_name\":\"\",\"tz\":\"America\\/Chicago\",\"tz_label\":\"Central Daylight Time\",\"tz_offset\":-18000,\"profile\":{\"real_name\":\"\",\"real_name_normalized\":\"\",\"email\":\"rajini_kr@yahoo.com\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b98d024ec7b6ef0bdda4bb4bec8e3334.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b98d024ec7b6ef0bdda4bb4bec8e3334.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b98d024ec7b6ef0bdda4bb4bec8e3334.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b98d024ec7b6ef0bdda4bb4bec8e3334.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/b98d024ec7b6ef0bdda4bb4bec8e3334.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0017.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03DWUWFZ\",\"name\":\"reshama\",\"deleted\":false,\"status\":null,\"color\":\"e23f99\",\"real_name\":\"Reshama Shaikh\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Reshama\",\"last_name\":\"Shaikh\",\"title\":\"Teaching Assistant\",\"real_name\":\"Reshama Shaikh\",\"real_name_normalized\":\"Reshama Shaikh\",\"email\":\"rs2715@stern.nyu.edu\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e980edd8c5536b57f36a3a287923bfa7.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0013-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e980edd8c5536b57f36a3a287923bfa7.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0013-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e980edd8c5536b57f36a3a287923bfa7.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0013-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e980edd8c5536b57f36a3a287923bfa7.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0013-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/e980edd8c5536b57f36a3a287923bfa7.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0013.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048D2SRV\",\"name\":\"revanth\",\"deleted\":false,\"status\":null,\"color\":\"9d8eee\",\"real_name\":\"Revanth Garlapati\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Revanth\",\"last_name\":\"Garlapati\",\"real_name\":\"Revanth Garlapati\",\"real_name_normalized\":\"Revanth Garlapati\",\"email\":\"revanth@alum.mit.edu\",\"image_24\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/43453d1ebc80633ae703a9891cbd21ed.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F272a%2Fimg%2Favatars%2Fava_0001-24.png\",\"image_32\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/43453d1ebc80633ae703a9891cbd21ed.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-32.png\",\"image_48\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/43453d1ebc80633ae703a9891cbd21ed.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-48.png\",\"image_72\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/43453d1ebc80633ae703a9891cbd21ed.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001-72.png\",\"image_192\":\"https:\\/\\/secure.gravatar.com\\/avatar\\/43453d1ebc80633ae703a9891cbd21ed.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F3654%2Fimg%2Favatars%2Fava_0001.png\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048ASZ33\",\"name\":\"skneher\",\"deleted\":false,\"status\":null,\"color\":\"dd8527\",\"real_name\":\"Shaun Kneher\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Shaun\",\"last_name\":\"Kneher\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-01\\/4282976223_fa6a98b4c1741a430953_original.jpg\",\"real_name\":\"Shaun Kneher\",\"real_name_normalized\":\"Shaun Kneher\",\"email\":\"skneher@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U048V3KM5\",\"name\":\"tohei\",\"deleted\":false,\"status\":null,\"color\":\"e7392d\",\"real_name\":\"Tohei Yokogawa\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Tohei\",\"last_name\":\"Yokogawa\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-08\\/4382481755_d7fae3253391b6c3b878_original.jpg\",\"real_name\":\"Tohei Yokogawa\",\"real_name_normalized\":\"Tohei Yokogawa\",\"email\":\"toheimtr@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U047PAV7U\",\"name\":\"trevor\",\"deleted\":false,\"status\":null,\"color\":\"bc3663\",\"real_name\":\"Trevor Smith\",\"tz\":\"America\\/Los_Angeles\",\"tz_label\":\"Pacific Daylight Time\",\"tz_offset\":-25200,\"profile\":{\"first_name\":\"Trevor\",\"last_name\":\"Smith\",\"title\":\"analytics\",\"skype\":\"\",\"phone\":\"\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-04-02\\/4282213596_9c1126e8d5808b70b830_original.jpg\",\"real_name\":\"Trevor Smith\",\"real_name_normalized\":\"Trevor Smith\",\"email\":\"trevor.stuard@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U02JT9N7X\",\"name\":\"trevor_bedrin\",\"deleted\":false,\"status\":null,\"color\":\"d58247\",\"real_name\":\"Trevor Bedrin\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Trevor\",\"last_name\":\"Bedrin\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2014-09-09\\/2639349049_original.jpg\",\"skype\":\"trevor.bedrin\",\"real_name\":\"Trevor Bedrin\",\"real_name_normalized\":\"Trevor Bedrin\",\"email\":\"trevor.bedrin@kaplan.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B8D8PZ\",\"name\":\"tstacey\",\"deleted\":false,\"status\":null,\"color\":\"c386df\",\"real_name\":\"Tim Stacey\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Tim\",\"last_name\":\"Stacey\",\"title\":\"\",\"skype\":\"\",\"phone\":\"\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-27\\/3538085108_a139124924aea05cfbd2_original.jpg\",\"real_name\":\"Tim Stacey\",\"real_name_normalized\":\"Tim Stacey\",\"email\":\"timothystacey@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"U03B8NG27\",\"name\":\"wojohowitz\",\"deleted\":false,\"status\":null,\"color\":\"5870dd\",\"real_name\":\"Wokjai Richard Yu\",\"tz\":\"America\\/Indiana\\/Indianapolis\",\"tz_label\":\"Eastern Daylight Time\",\"tz_offset\":-14400,\"profile\":{\"first_name\":\"Wokjai Richard\",\"last_name\":\"Yu\",\"image_24\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_24.jpg\",\"image_32\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_32.jpg\",\"image_48\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_48.jpg\",\"image_72\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_72.jpg\",\"image_192\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_192.jpg\",\"image_original\":\"https:\\/\\/s3-us-west-2.amazonaws.com\\/slack-files2\\/avatars\\/2015-01-12\\/3391911308_bda170081c8ee7305249_original.jpg\",\"real_name\":\"Wokjai Richard Yu\",\"real_name_normalized\":\"Wokjai Richard Yu\",\"email\":\"w.richard.yu@gmail.com\"},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false},{\"id\":\"USLACKBOT\",\"name\":\"slackbot\",\"deleted\":false,\"status\":null,\"color\":\"757575\",\"real_name\":\"Slack Bot\",\"tz\":null,\"tz_label\":\"Pacific Daylight Time\",\"tz_offset\":-25200,\"profile\":{\"first_name\":\"Slack\",\"last_name\":\"Bot\",\"image_24\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_24.png\",\"image_32\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_32.png\",\"image_48\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_48.png\",\"image_72\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_72.png\",\"image_192\":\"https:\\/\\/slack-assets2.s3-us-west-2.amazonaws.com\\/10068\\/img\\/slackbot_192.png\",\"real_name\":\"Slack Bot\",\"real_name_normalized\":\"Slack Bot\",\"email\":null},\"is_admin\":false,\"is_owner\":false,\"is_primary_owner\":false,\"is_restricted\":false,\"is_ultra_restricted\":false,\"is_bot\":false}],\"bots\":[{\"id\":\"B00\",\"name\":\"\",\"deleted\":false},{\"id\":\"B0497T6N6\",\"name\":\"hubot\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/4324\\/img\\/services\\/hubot_48.png\"}},{\"id\":\"B02KQSLP4\",\"name\":\"twitter\",\"deleted\":false,\"icons\":{\"image_48\":\"https:\\/\\/slack.global.ssl.fastly.net\\/20653\\/img\\/services\\/twitter_48.png\"}}],\"svn_rev\":\"dev\",\"min_svn_rev\":99999,\"version_ts\":1428696596,\"min_version_ts\":1428655357,\"cache_version\":\"v6-dog\"}');
+	
+//-->
+</script>		
+			
+		
+	<!-- output_js "core" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/f53f/js/rollup-core_required.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/c212/js/libs/bootstrap_plastic.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/bf3b/js/libs/fastclick.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/8556/js/libs/headroom.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/8827/js/plastic.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/f817/js/TS.web.js" crossorigin="anonymous"></script>
+
+			<!-- output_js "secondary" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/25c1/js/rollup-secondary_required.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/494c/js/TS.storage.js" crossorigin="anonymous"></script>
+
+		<!-- output_js "regular" -->
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/8528/js/TS.web.comments.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/833d/js/TS.web.file.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/2eab/js/libs/codemirror.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://slack.global.ssl.fastly.net/9e78/js/codemirror_load.js" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+	<!--
+		boot_data.page_needs_custom_emoji = true;
+		
+		boot_data.file = JSON.parse('{\"id\":\"F04BGLNQQ\",\"created\":1428693189,\"timestamp\":1428693189,\"name\":\"benson.ipynb\",\"title\":\"benson.ipynb\",\"mimetype\":\"text\\/plain\",\"filetype\":\"text\",\"pretty_type\":\"Plain Text\",\"user\":\"U048DLDA1\",\"editable\":true,\"size\":19425,\"mode\":\"snippet\",\"is_external\":false,\"external_type\":\"\",\"is_public\":false,\"public_url_shared\":false,\"url\":\"https:\\/\\/slack-files.com\\/files-pub\\/T02JULWBE-F04BGLNQQ-e25a66fdbc\\/benson.ipynb\",\"url_download\":\"https:\\/\\/slack-files.com\\/files-pub\\/T02JULWBE-F04BGLNQQ-e25a66fdbc\\/download\\/benson.ipynb\",\"url_private\":\"https:\\/\\/files.slack.com\\/files-pri\\/T02JULWBE-F04BGLNQQ\\/benson.ipynb\",\"url_private_download\":\"https:\\/\\/files.slack.com\\/files-pri\\/T02JULWBE-F04BGLNQQ\\/download\\/benson.ipynb\",\"permalink\":\"https:\\/\\/metis-dsbc.slack.com\\/files\\/haluu\\/F04BGLNQQ\\/benson.ipynb\",\"permalink_public\":\"https:\\/\\/slack-files.com\\/T02JULWBE-F04BGLNQQ-e25a66fdbc\",\"edit_link\":\"https:\\/\\/metis-dsbc.slack.com\\/files\\/haluu\\/F04BGLNQQ\\/benson.ipynb\\/edit\",\"preview\":\"{\\n \\\"cells\\\": [\\n  {\\n   \\\"cell_type\\\": \\\"markdown\\\",\\n   \\\"metadata\\\": {},\\n   \\\"source\\\": [\\n    \\\"# MTA Data Challenges\\\"\\n   ]\\n  },\\n  {\",\"preview_highlight\":\"<div class=\\\"sssh-code\\\"><div class=\\\"sssh-line\\\"><pre>{<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre> &quot;cells&quot;: [<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>  {<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>   &quot;cell_type&quot;: &quot;markdown&quot;,<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>   &quot;metadata&quot;: {},<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>   &quot;source&quot;: [<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>    &quot;# MTA Data Challenges&quot;<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>   ]<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>  },<\\/pre><\\/div>\\n<div class=\\\"sssh-line\\\"><pre>  {<\\/pre><\\/div>\\n<\\/div>\",\"lines\":519,\"lines_more\":509,\"channels\":[],\"groups\":[],\"ims\":[\"D048DMH4D\"],\"comments_count\":0}');
+		boot_data.file.comments = JSON.parse('[]');
+
+		
+
+		var g_editor;
+
+		$(function(){
+
+			var wrap_long_lines = !!TS.model.code_wrap_long_lines;
+
+			g_editor = CodeMirror(function(elt){
+				var content = document.getElementById("file_contents");
+				content.parentNode.replaceChild(elt, content);
+			}, {
+				value: $('#file_contents').text(),
+				lineNumbers: true,
+				matchBrackets: true,
+				indentUnit: 4,
+				indentWithTabs: true,
+				enterMode: "keep",
+				tabMode: "shift",
+				viewportMargin: Infinity,
+				readOnly: true,
+				lineWrapping: wrap_long_lines
+			});
+
+			$('#file_preview_wrap_cb').bind('change', function(e) {
+				TS.model.code_wrap_long_lines = $(this).prop('checked');
+				g_editor.setOption('lineWrapping', TS.model.code_wrap_long_lines);
+			})
+
+			$('#file_preview_wrap_cb').prop('checked', wrap_long_lines);
+
+			CodeMirror.switchSlackMode(g_editor, 'text');
+		});
+
+		
+		$('#file_comment').css('overflow', 'hidden').autogrow();
+	//-->
+	</script>
+
+			<script type="text/javascript">TS.boot(boot_data);</script>
+	<!-- slack-www277 / 2015-04-10 13:13:00 / v59b551c2a34baf1688afcf291a6eb9bea7c84a09 -->
+
+</body>
+</html>

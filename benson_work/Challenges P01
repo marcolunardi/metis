@@ -1,0 +1,12 @@
+mydict = {}
+reader = csv.reader(open("turnstile_150404.txt", "r"))
+reader.next()
+
+for num, row in enumerate(reader):
+    key = tuple(row[0:4])
+    value = [row[4:]]
+    mydict.setdefault(key, [])
+    mydict[key].append(value)
+    
+print mydict[('A002','R051','02-00-00','LEXINGTON AVE')]    
+print mydict
