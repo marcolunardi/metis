@@ -1,0 +1,31 @@
+Challenge 01
+
+select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the table of male players) group by P1
+
+select *
+from
+	((select P1 as Player from USMales)
+	union
+	(select P2 as Player from USMales)) #all players
+
+select Player, count(Player)
+from
+	((select P1 as Player from USMales)
+	union
+	(select P2 as Player from USMales)) #all players
+group by Player
+
+select P1 as Player, 'US' as Tournament, 'male' as Sex
+
+
+left outer join(
+			select	total_us_men_table.player,
+					ifnull(total_us_men_table.player2count,0) as total_matches)
+			from (
+					select		*
+					from (
+								select		disitnct player2 as player
+								from		us_men_2013
+							union
+								select		
+								see sql_photo.jpg))
