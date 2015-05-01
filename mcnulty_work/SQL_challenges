@@ -5,13 +5,13 @@ select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the t
 select *
 from
 	((select P1 as Player from USMales)
-	union
+	union all
 	(select P2 as Player from USMales)) #all players
 
 select Player, count(Player)
 from
 	((select P1 as Player from USMales)
-	union
+	union all
 	(select P2 as Player from USMales)) #all players
 group by Player
 
@@ -26,6 +26,6 @@ left outer join(
 					from (
 								select		disitnct player2 as player
 								from		us_men_2013
-							union
+							union all
 								select		
 								see sql_photo.jpg))
