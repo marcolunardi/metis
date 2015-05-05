@@ -1,14 +1,130 @@
+select EID, count(*) total
+from (select EmployeeID as EID from Orders)
+group by EID
+order by total desc
+
+
+
+
 Challenge 01
 
-select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the table of male players) group by P1
+##select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the table of male players) group by P1
+
+select Player, count(*) total
+from
+	((select Player1 as Player from AusOpen-men-2013)
+	union all
+	(select Player2 as Player from AusOpen-men-2013)
+	union all
+	(select Player1 as Player from AusOpen-women-2013)
+	union all
+	(select Player2 as Player from AusOpen-women-2013))
+
+group by Player
+order by total desc
+
+
+select Player, count(*) total
+from
+	((select Player1 as Player from FrenchOpen-men-2013)
+	union all
+	(select Player2 as Player from FrenchOpen-men-2013)
+	union all
+	(select Player1 as Player from FrenchOpen-women-2013)
+	union all
+	(select Player2 as Player from FrenchOpen-women-2013))
+
+select Player, count(Player)
+group by Player
 
 select *
 from
-	((select P1 as Player from USMales)
+	((select Player1 as Player from USOpen-men-2013)
 	union all
-	(select P2 as Player from USMales)) #all players
+	(select Player2 as Player from USOpen-men-2013)
+	union all
+	(select Player1 as Player from USOpen-women-2013)
+	union all
+	(select Player2 as Player from USOpen-women-2013))
 
 select Player, count(Player)
+group by Player
+
+select *
+from
+	((select Player1 as Player from Wimbledon-men-2013)
+	union all
+	(select Player2 as Player from Wimbledon-men-2013)
+	union all
+	(select Player1 as Player from Wimbledon-women-2013)
+	union all
+	(select Player2 as Player from Wimbledon-women-2013))
+
+select Player, count(Player)
+group by Player
+
+
+## Challenge 02
+
+select *
+from
+	((select Player1 as Player from AusOpen-men-2013)
+	union all
+	(select Player2 as Player from AusOpen-men-2013)
+	union all
+	(select Player1 as Player from FrenchOpen-men-2013)
+	union all
+	(select Player2 as Player from FrenchOpen-men-2013)
+	union all
+	(select Player1 as Player from USOpen-men-2013)
+	union all
+	(select Player2 as Player from USOpen-men-2013)
+	union all
+	(select Player1 as Player from Wimbledon-men-2013)
+	union all
+	(select Player2 as Player from Wimbledon-men-2013)
+
+select Player, count(Player)
+group by PLayer
+
+select *
+from
+	((select Player1 as Player from AusOpen-women-2013)
+	union all
+	(select Player2 as Player from AusOpen-women-2013)
+	union all
+	(select Player1 as Player from FrenchOpen-women-2013)
+	union all
+	(select Player2 as Player from FrenchOpen-women-2013)
+	union all
+	(select Player1 as Player from USOpen-women-2013)
+	union all
+	(select Player2 as Player from USOpen-women-2013)
+	union all
+	(select Player1 as Player from Wimbledon-women-2013)
+	union all
+	(select Player2 as Player from Wimbledon-women-2013)
+
+select Player, count(Player)
+group by PLayer
+
+Challenge 03
+
+
+
+
+select EmployeeID, count(EmployeeID) 
+from Orders
+group by EmployeeID
+
+
+select Player, count(Player)
+
+
+select *
+from
+	
+
 from
 	((select P1 as Player from USMales)
 	union all
