@@ -1,18 +1,11 @@
-select EID, count(*) total
-from (select EmployeeID as EID from Orders)
-group by EID
-order by total desc
+## SQL Challenges
 
 
+## Challenge 01
 
+## Using the same tennis data, find the number of matches played by each player in each tournament (remember that a player can be present as both player1 or player2)
 
-Challenge 01
-
-##Using the same tennis data, find the number of matches played by each player in each tournament (remember that a player can be present as both player1 or player2)
-
-##select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the table of male players) group by P1
-
-select Player, count(*) total
+select Player, count(*) sum
 from
 	((select Player1 as Player from AusOpen-men-2013)
 	union all
@@ -20,13 +13,11 @@ from
 	union all
 	(select Player1 as Player from AusOpen-women-2013)
 	union all
-	(select Player2 as Player from AusOpen-women-2013))
-
+	(select Player2 as Player from AusOpen-women-2013)) d
 group by Player
-order by total desc
+order by sum desc
 
-
-select Player, count(*) total
+select Player, count(*) sum
 from
 	((select Player1 as Player from FrenchOpen-men-2013)
 	union all
@@ -34,12 +25,11 @@ from
 	union all
 	(select Player1 as Player from FrenchOpen-women-2013)
 	union all
-	(select Player2 as Player from FrenchOpen-women-2013))
-
-select Player, count(Player)
+	(select Player2 as Player from FrenchOpen-women-2013)) d
 group by Player
+order by sum desc;
 
-select *
+select Player, count(*) sum
 from
 	((select Player1 as Player from USOpen-men-2013)
 	union all
@@ -47,12 +37,11 @@ from
 	union all
 	(select Player1 as Player from USOpen-women-2013)
 	union all
-	(select Player2 as Player from USOpen-women-2013))
-
-select Player, count(Player)
+	(select Player2 as Player from USOpen-women-2013)) d
 group by Player
+order by sum desc;
 
-select *
+select Player, count(*) sum
 from
 	((select Player1 as Player from Wimbledon-men-2013)
 	union all
@@ -60,27 +49,55 @@ from
 	union all
 	(select Player1 as Player from Wimbledon-women-2013)
 	union all
-	(select Player2 as Player from Wimbledon-women-2013))
-
-select Player, count(Player)
+	(select Player2 as Player from Wimbledon-women-2013)) d
 group by Player
+order by sum desc;
+
 
 
 ## Challenge 04
 
-What are the unforced error percentages of the top three players with the most wins? (unforced error percentage is % of points lost due to unforced errors. In a match, you have fields for number of points won by each player, and number of unforced errors for each field).
+## What are the unforced error percentages of the top three players with the most wins? (unforced error percentage is % of points lost due to unforced errors. In a match, you have fields for number of points won by each player, and number of unforced errors for each field).
 
-select player, unforced, total, 1.0*unforced/total as percentage
-from
-(select player1 as player, dbf_1 + ufe_1 as unforced, tpw_1 as total from men_majors
+create table men_all as 
+((select * from AusOpen-men-2013)
 union all
-select player2 as player, dbf_2 + ufe_2 as unforced, tpw_2 as total from men_majors
-) d
-where player = 'Rafael Nadal' or player = 'Stanislas Wawrinka' or player = 'Roger Federer'
+(select * from FrenchOpen-men-2013)
+union all
+(select * from USOpen-men-2013)
+union all
+(select * from Wimbledon-men-2013));
+
+create table women_all as 
+((select * from AusOpen-women-2013)
+union all
+(select * from FrenchOpen-women-2013)
+union all
+(select * from USOpen-women-2013)
+union all
+(select * from Wimbledon-women-2013));
+
+select Players, errors, totals, errors/sums as percentage
+from
+((select player1 as Players, dbf_1 + ufe_1 as errors, tpw_1 as sums from men_all)
+union all
+(select player2 as Player, dbf_2 + ufe_2 as errors, tpw_2 as sums from men_all
+)) d
+where player = 'Rafael Nadal' or player = 'Stanislas Wawrinka' or player = 'Roger Federer';
+
+select Players, errors, totals, errors/sums as percentage
+from
+((select player1 as Players, dbf_1 + ufe_1 as errors, tpw_1 as sums from women_all)
+union all
+(select player2 as Player, dbf_2 + ufe_2 as errors, tpw_2 as sums from women_all
+)) d
+where player = 'Agnieszka Radwanska' or player = 'Dominika Cibulkova' or player = 'Na Li';
 
 
 
-## Challenge 02
+## Challenge 02 (uncomplete)
+
+#select distinct P1 (#actual name of the column) count(P1) from USopenMale(#the table of male players) group by P1
 
 select *
 from
