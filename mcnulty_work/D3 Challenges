@@ -1,0 +1,26 @@
+Day One Challenge
+Make an SVG with five circles, each with a different color, using data.
+Make an SVG with five circles, ordered diagonally across the SVG.
+Make an SVG with five circles, ordered randomly across the SVG. (Hint: Math.random())
+Make an SVG with three circles and a rectangle.
+Make a triangle with yellow fill and a blue border.
+Extra Credit: Make the triforce from Zelda
+
+Super Extra Credit: Scape all the data from this visualization, using Javascript, then use it in this visualization.
+
+
+var dataset = [4, 1, 2, 10, 50];
+var colorScale = d3.scale.category10();
+    
+var svg = d3.select("body").append("svg")
+    .attr("width", 600)
+    .attr("height", 600);
+
+svg.selectAll("circle")
+    .data(dataset)
+    .enter().append("circle")
+    .attr("x", function(d,i) { return i * 40; })
+    .attr("y", 10)
+    .attr("width", 30)
+    .attr("height", function(d) { return d * 10; })
+    .style("fill", function(d,i) { return colorScale(i); });

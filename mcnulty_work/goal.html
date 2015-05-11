@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>D3 Basics</title>
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+  </head>
+
+  <body>
+
+    <script>
+
+    var dataset = [4, 1, 2, 10, 50, 2, 13, 8];
+    var colorScale = d3.scale.category10();
+    
+    var svg = d3.select("body").append("svg")
+        .attr("width", 600)
+        .attr("height", 600);
+
+    svg.selectAll("rect")
+      .data(dataset)
+       .enter().append("rect")
+      .attr("x", function(d,i) { return i * 40; })
+      .attr("y", 10)
+      .attr("width", 30)
+      .attr("height", function(d) { return d * 10; })
+      .style("fill", function(d,i) { return colorScale(i); });
+
+    </script>
