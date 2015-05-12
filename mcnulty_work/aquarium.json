@@ -1,0 +1,25 @@
+{
+    "list": "Top 5 Aquariums According To The Internet",
+    "aquariums": [
+        {
+            "name": "Monterey Bay Aquarium",
+            "address": "886 Cannery Row, Monterey, CA 93940"
+        },
+        {
+            "name": "Georgia Aquarium",
+            "address": "225 Baker St NW, Atlanta, GA 30313"
+        },
+        {
+            "name": "Shedd Aquarium",
+            "address": "1200 S Lake Shore Dr, Chicago, IL 60605"
+        },
+        {
+            "name": "National Aquarium",
+            "address": "501 E Pratt St, Baltimore, MD 21202"
+        },
+        {
+            "name": "Audubon Aquarium of the Americas",
+            "address": "1 Canal St, New Orleans, LA 70130"
+        }
+    ]
+}

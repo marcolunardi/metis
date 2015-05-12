@@ -1,0 +1,18 @@
+var data = [{start: 0, size: 3.14159}];
+
+var arc = d3.svg.arc()
+     .innerRadius(80)     
+     .outerRadius(100)     
+     .startAngle(function(d, i) { return d.start; })     
+     .endAngle(function(d, i) { return d.start + d.size; }); 
+
+var chart = d3.select("body").append("svg")
+	 .attr("height", 600)     
+     .attr("class", "chart")   
+     .append("g")     
+     .attr("transform", "translate(50,100)");
+     
+chart.selectAll("path")     
+     .data(data)   
+     .enter().append("path")     
+     .attr("d", arc);
