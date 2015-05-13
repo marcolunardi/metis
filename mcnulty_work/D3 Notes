@@ -53,4 +53,9 @@ d3.select("svg")
                        else if( d == '30' ) { return "green"; }
    });
 
-   
+ 
+## to run html server
+## python -m SimpleHTTPServer
+## Open into chrome:
+## http://localhost:8000/index.html
+
