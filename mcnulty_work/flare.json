@@ -1,5 +1,5 @@
 {
-    "name": "Find the right Customer",
+    "name": "Which Customer will buy your Product?",
     "children": [{
         "name": "1 - Previous Campaign",
         "children": [{
@@ -10,7 +10,7 @@
             "size": 1336
         }]
     }, {
-        "name": "2 - Age",
+        "name": "2 - Which Age?",
         "children": [{
             "name": "Youngest (18-40)",
             "size": 1082
@@ -19,34 +19,56 @@
             "size": 1336
         }]
     }, {
-        "name": "3 - Marital Status",
+        "name": "3 - Which Job?",
+        "children": [{
+            "name": "Student",
+            "size": 1082
+        }, {
+            "name": "Retired",
+            "size": 1336
+        }]
+    }, {
+        "name": "4 - Marital Status",
         "children": [{
             "name": "Single",
             "size": 1336
         }]
     }, {
-        "name": "4 - Way of Contacting",
+        "name": "5 - Way of Contacting",
         "children": [{
             "name": "Cellular",
             "size": 1336
         }]
+
     }, {
-        "name": "5 - Best Number of Contacts?",
+        "name": "6 - How many Contacts?",
         "children": [{
-            "name": "One",
+            "name": "One is usually enough",
             "size": 1336
         }]
     }, {
-        "name": "6 - Macro Scenarios: Unemployment?",
+        "name": "7 - Macro Scenarios: Unemployment?",
         "children": [{
             "name": "Increasing",
             "size": 1336
         }]
     }, {
-        "name": "7 - Macro Scenarios: Interest Rates?",
+        "name": "8 - Macro Scenarios: Interest Rates?",
         "children": [{
             "name": "Relatively Low",
             "size": 1336
-        }]                        
+        }]
+    }, {
+        "name": "9 - Suggestion: Add more Customers' Data",
+        "children": [{
+            "name": "Total Wealth",
+            "size": 1082
+        }, {
+            "name": "Risk Profile",
+            "size": 1336
+        }, {
+            "name": "Bought Products",
+            "size": 1336            
+        }]                                
     }]
 }
