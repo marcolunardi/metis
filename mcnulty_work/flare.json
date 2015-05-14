@@ -1,7 +1,7 @@
 {
     "name": "Customers",
     "children": [{
-        "name": "Previous Campaign",
+        "name": "1 - Previous Campaign",
         "children": [{
             "name": "Contacted? Yes",
             "size": 1082
@@ -10,7 +10,7 @@
             "size": 1336
         }]
     }, {
-        "name": "Age",
+        "name": "2 - Age",
         "children": [{
             "name": "Youngest (18-40)",
             "size": 1082
@@ -19,10 +19,34 @@
             "size": 1336
         }]
     }, {
-        "name": "Marital Status",
+        "name": "3 - Marital Status",
         "children": [{
             "name": "Single",
             "size": 1336
         }]
+    }, {
+        "name": "4 - Way of Contacting",
+        "children": [{
+            "name": "Cellular",
+            "size": 1336
+        }]
+    }, {
+        "name": "5 - Best Number of Contacts?",
+        "children": [{
+            "name": "One",
+            "size": 1336
+        }]
+    }, {
+        "name": "6 - Macro Scenarios: Unemployment?",
+        "children": [{
+            "name": "Increasing",
+            "size": 1336
+        }]
+    }, {
+        "name": "7 - Macro Scenarios: Interest Rates?",
+        "children": [{
+            "name": "Relatively Low",
+            "size": 1336
+        }]                        
     }]
 }
