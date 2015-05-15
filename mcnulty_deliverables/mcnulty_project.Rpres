@@ -58,11 +58,11 @@ ROC values are worse for SVC and Decision Tree (around 0.63 for both)
 
 So, there are samples that are pretty hard to be classified
 
-I selected and analyzed the samples that couldn't be correctly classified even by the model that turned out to be the best (Logistic Regression)
+I selected and analyzed the samples that coulnd't be correctly classified even by the model that turned out to be the best (Logistic Regression)
 
-They show much different patterns from the other samples, then it's quite hard to classify them correctly by using the available features
+They show much different patterns from the other samples, then it's quite hard to classify them correclty by using the available features
 
-Conclusions: "What should we do?"
+Then, "What should we do?"
 =======================================================
 
 Using the available features, the predicting model based on 10 inputs and the Logistic Regression Classifier is not much bad
@@ -72,4 +72,12 @@ It can be used to better focusing the bank campaigns, and to raise the chances o
 More features should be added to get better outcomes
 
 Features focused on the actual known profile of the client (total wealth, products bought in the past, risk aversion profile) should tell us more about the customer capabilities to stand a temporary lock on a portion of her/his wealth, that usually is the main customer fear about a term deposit
+
+
+Conclusions
+=======================================================
+
+And now, to summarize... a little taste of D3!
+
+http://localhost:8000/index.html
 
