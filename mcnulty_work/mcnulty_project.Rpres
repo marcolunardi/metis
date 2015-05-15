@@ -21,7 +21,7 @@ First step: much of Exploratory Analysis
 ========================================================
 Even after a first exploratory look at the data it turns out that some of the dataset features have a very low variance, and little influence (if non-existent) on the desired outcome
 
-For instance, suprisingly features like "having a loan", or "having a mortgage" have almost no influence on the customer choice to buy or not to buy the proposed term deposit
+For instance, features like "having a loan", or "having a mortgage" surprisingly (to me) have almost no influence on the customer choice to buy or not to buy the proposed term deposit
 
 Then, some features pruning should be made.
 
@@ -45,11 +45,11 @@ K-Neighbors, Logistic, Decision Tree, SVM, Random Forest, Gaussian NB
 
 The outcomes are quite similar for all the classifiers, and not quite satisfying
 
-Accuracy around 90%
+Accuracy on the testing sets (out of samples) is around 90%
 
 ROC Area between  0.76 -> 0.78
 
-Stratified Folding confirms the average ROC Area value
+Stratified Folding confirms the average ROC Area values
 
 Please, tell my "Why?"
 =======================================================
@@ -77,7 +77,7 @@ Features focused on the actual known profile of the client (total wealth, produc
 Conclusions
 =======================================================
 
-And now, to summarize... a little (very little) taste of D3!
+And now, to summarize... a little (but very little) taste of D3!
 
 http://localhost:8000/index.html
 
