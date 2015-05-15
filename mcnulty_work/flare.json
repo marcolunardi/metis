@@ -64,10 +64,10 @@
             "name": "Total Wealth",
             "size": 1082
         }, {
-            "name": "Risk Profile",
+            "name": "Risk aversion Profile",
             "size": 1336
         }, {
-            "name": "Bought Products",
+            "name": "Products bought in the past",
             "size": 1336            
         }]                                
     }]
