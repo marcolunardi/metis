@@ -1,0 +1,74 @@
+{
+    "name": "Which Customer will buy your Product?",
+    "children": [{
+        "name": "1 - Previous Campaign",
+        "children": [{
+            "name": "Contacted? Yes",
+            "size": 1082
+        }, {
+            "name": "Bought a Product? Yes",
+            "size": 1336
+        }]
+    }, {
+        "name": "2 - Which Age?",
+        "children": [{
+            "name": "Youngest (18-40)",
+            "size": 1082
+        }, {
+            "name": "Oldest (60-80)",
+            "size": 1336
+        }]
+    }, {
+        "name": "3 - Which Job?",
+        "children": [{
+            "name": "Student",
+            "size": 1082
+        }, {
+            "name": "Retired",
+            "size": 1336
+        }]
+    }, {
+        "name": "4 - Marital Status",
+        "children": [{
+            "name": "Single",
+            "size": 1336
+        }]
+    }, {
+        "name": "5 - Means of Contact",
+        "children": [{
+            "name": "Cellular",
+            "size": 1336
+        }]
+
+    }, {
+        "name": "6 - How many Contacts?",
+        "children": [{
+            "name": "One is usually enough",
+            "size": 1336
+        }]
+    }, {
+        "name": "7 - Macro Scenarios: Unemployment?",
+        "children": [{
+            "name": "Increasing",
+            "size": 1336
+        }]
+    }, {
+        "name": "8 - Macro Scenarios: Interest Rates?",
+        "children": [{
+            "name": "Relatively Low",
+            "size": 1336
+        }]
+    }, {
+        "name": "9 - Suggestion: Add more Customers' Data",
+        "children": [{
+            "name": "Total Wealth",
+            "size": 1082
+        }, {
+            "name": "Risk aversion Profile",
+            "size": 1336
+        }, {
+            "name": "Products bought in the past",
+            "size": 1336            
+        }]                                
+    }]
+}
