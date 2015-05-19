@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Prediction Wizard</title>
+    <link rel="stylesheet" href="static/d3.slider.css" />
+    <style>
+     body {
+       font-family: Verdana,Arial,sans-serif;
+     }
+     h2 {
+       font-size: 1.2em;
+       margin: 60px 0 5px 0;
+       color: gray
+     }
+     .space {
+       margin-bottom: 20 px;
+     }
+     .wrapper {
+       width: 800px;
+       margin-left: auto;
+       margin-right: auto;
+       margin-bottom: 0px;
+     }
+     #bar_chart {
+       margin-bottom: 0 px;
+     }
+     .bar {
+       fill: #FF75A3;
+     }
+     span {
+       color: steelblue;
+     }
+    </style>
+  </head>
+
+  <body>
+
+
+    <div id="chart_area" class="wrapper">
+      <h2>Probability to sell a Term Deposit</h2>
+      <p class="space"></p>
+      <div id="bar_chart">
+      </div>
+    </div>
+
+    <div id="sliders" class="wrapper">
+
+      <h2 class="feature">Age: <span id="age">25</span></h2>
+      <div id="age_slider"></div>
+
+      <h2 class="feature">Employment Variation Rate: <span id="employment">0</span></h2>
+      <div id="employment_slider"></div>
+
+      <h2 class="feature">Euribor Rate 3 months: <span id="euribor">2</span></h2>
+      <div id="euribor_slider"></div>
+
+    </div>
+
+    <!-- Import the libraries: jQuery, d3, d3.slider -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="static/d3.slider.js"></script>
+
+    <script>
+     <!-- SINGLE BAR CHART -->
+     var current_age = 25;
+     var current_employment = 0;
+     var current_euribor = 2;
+     var current_prob = 24.3;
+     var chart = d3.select("#bar_chart")
+                   .append("svg:svg")
+                   .attr("width", 800)
+                   .attr("height", 100);
+     var chance_scale = d3.scale.linear()
+                                .domain([0, 100])
+                                .range([0, 800]);
+     var bar = chart.append("g")
+                    .attr("class", "bar")
+       bar.append("svg:rect")
+          .attr("id", "chancebar")
+          .attr("class", "bar")
+          .attr("width", chance_scale(current_prob))
+          .attr("height", 50);
+     bar.append("text")
+        .attr("id", "percent_text")
+        .attr("dy", ".75em")
+        .attr("y", 15)
+        .attr("x", chance_scale(current_prob-5))
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        .attr("font-size", 20)
+        .text( current_prob.toFixed(1) + "%");
+     <!-- FUNCTION TO GET CHANCE FROM YOUR PREDICTOR WITH AJAX AND CHANGE BAR  HEIGHT -->
+     function getAndDrawChance(age, employment, euribor){
+       $.ajax({
+         type: "POST",
+         contentType: "application/json; charset=utf-8",
+         url: "/score",
+         dataType: "json",
+         async: true,
+         data: "{\"example\": ["+age+","+employment+","+euribor+"]}",
+         success: function (data) {
+           var chance = 100 * data["score"];
+           d3.select("#chancebar")
+             .attr("width", chance_scale(chance));
+           d3.select("#percent_text")
+             .attr("x", chance_scale(chance-5))
+             .text(chance.toFixed(1) + "%");
+         },
+         error: function (result) {
+         }
+       })
+     }
+     <!-- SLIDERS -->
+     d3.select('#age_slider')
+       .call(
+         d3.slider()
+           .value(current_age)
+           .min(18)
+           .max(75)
+           .step(1)
+           .axis(true)
+           .on("slide", function(evt,value) {
+             d3.select('#age').text(value);
+             current_age = value;
+             getAndDrawChance(current_age, current_employment, current_euribor)
+           }
+           )
+       );
+     d3.select('#employment_slider')
+       .call(
+         d3.slider()
+           .value(current_employment)
+           .min(-3.4)
+           .max(1.4)
+           .step(0.1)
+           .axis(true)
+           .on("slide", function(evt,value) {
+             d3.select('#employment').text(value);
+             current_year = value;
+             getAndDrawChance(current_age, current_employment, current_euribor)
+           }
+           )
+       );
+     d3.select('#euribor_slider')
+       .call(
+         d3.slider()
+           .value(current_euribor)
+           .min(0.5)
+           .max(5.5)
+           .step(0.1)
+           .axis(true)
+           .on("slide", function(evt,value) {
+             d3.select('#euribor').text(value);
+             current_euribor = value;
+             getAndDrawChance(current_age, current_employment, current_euribor)
+           }
+           )
+       );
+    </script>
+  </body>
+</html>
