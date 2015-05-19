@@ -65,9 +65,9 @@
     <script>
      <!-- SINGLE BAR CHART -->
      var current_age = 25;
-     var current_employment = 0;
+     var current_employment = -3;
      var current_euribor = 2;
-     var current_prob = 24.3;
+     var current_prob = 15.88;
      var chart = d3.select("#bar_chart")
                    .append("svg:svg")
                    .attr("width", 800)
@@ -90,7 +90,7 @@
         .attr("text-anchor", "middle")
         .attr("fill", "white")
         .attr("font-size", 20)
-        .text( current_prob.toFixed(1) + "%");
+        .text( current_prob.toFixed(2) + "%");
      <!-- FUNCTION TO GET CHANCE FROM YOUR PREDICTOR WITH AJAX AND CHANGE BAR  HEIGHT -->
      function getAndDrawChance(age, employment, euribor){
        $.ajax({
@@ -106,7 +106,7 @@
              .attr("width", chance_scale(chance));
            d3.select("#percent_text")
              .attr("x", chance_scale(chance-5))
-             .text(chance.toFixed(1) + "%");
+             .text(chance.toFixed(2) + "%");
          },
          error: function (result) {
          }
@@ -138,7 +138,7 @@
            .axis(true)
            .on("slide", function(evt,value) {
              d3.select('#employment').text(value);
-             current_year = value;
+             current_employment = value;
              getAndDrawChance(current_age, current_employment, current_euribor)
            }
            )
