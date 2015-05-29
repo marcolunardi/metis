@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>mta.info | MTA Fares and Tolls</title>
+<title>mta.info | MTA Bridges and Tunnels' Toll Cars</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 
@@ -14,6 +14,112 @@
 <!-- jQuery include should be at the top -->
 <script language="javascript" type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/template.css">
+
+
+<style>
+
+img.shadow {
+
+	background: url(../images/shadow-1000x1000.gif) no-repeat right bottom;
+
+	padding: 5px 10px 10px 5px;
+
+}
+
+span.cred {
+
+	/*font-size:11px;*/
+
+	text-align:left;
+
+	color:#387CB4;/*#5193C8;*/ /*#314977; light blue *//*#000098;*/
+
+	font-size: 78%;
+
+                font-family: Verdana, Arial, sans-serif;
+
+                /* text-align: center; */
+
+				font-style:italic;
+
+				margin-top:1px; /* to space it from the picture */
+
+display:block;
+
+line-height:1.0em;
+
+}
+
+
+
+div.title {
+
+  color:#FFFFFF;
+
+  background-color:#0046AA;
+
+  font-size:15px;
+
+  font-weight:bold;
+
+  margin-bottom:2px;
+
+  margin-top:0px;
+
+}
+
+
+
+p.subtitle {
+
+  font-size:14px;
+
+  font-weight:bold;
+
+  margin-bottom:0px;
+
+}
+
+
+
+u.title {
+
+  font-weight:bold;
+
+  text-decoration: underline;
+
+}
+
+
+
+div.backtop {
+
+  float:right;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
+</style>
+
+<!--- prettyPhoto section 
+
+<script src="js/prettyPhoto/js/jquery-1.6.1.min.js" type="text/javascript" charset="utf-8"></script> 
+
+<link rel="stylesheet" href="/bandt/html/js/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+
+<script src="/bandt/html/js/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+
+--->
+
+
+
 
 
 		<!--[if lt IE 9]>
@@ -47,7 +153,7 @@
 
 		
 
-		<div id="search">			
+		<div id="account">			
 
 			<ul id="topbar-links">
 
@@ -64,9 +170,9 @@
 			</ul><br />
 
       	  <!-- Timer above hides Search during technical maintenance windows -->
-			<div id="search-box" style="width:230px; height:32px; float:right; margin-top:4px; margin-right:0; padding-right:0;">
+			<div id="account-box" style="width:230px; height:32px; float:right; margin-top:4px; margin-right:0; padding-right:0;">
 
-			<form id="searchform" method="get" action="http://search.mta.info/search" style="margin:0; padding:0; height:32px; float:left;">
+			<form id="accountform" method="get" action="http://search.mta.info/search" style="margin:0; padding:0; height:32px; float:left;">
 
 				<input type="hidden" name="site" value="my_collection"/>
 
@@ -161,272 +267,733 @@
 
 
 
-		<div id="breadcrumbs"><a href="http://www.mta.info/" title="Home Page">Home</a> &gt; <a href="http://web.mta.info/fares/">Fares</a> &gt; <strong>MTA Fares and Tolls</strong></div>
-		
-	
+
 		<div id="contentbox" style="margin:20px 0 10px 0; padding:0;">
 		<!-- skip navigation anchor -->
 	<a name="main-content">&nbsp;</a>
 		
 			
-<!-- Enter Content Here -->
+<!-- Enter Content Here --><div class="roundCorners push-1 span-72 pad-10">
 
-	<div class="roundCorners push-1 span-72 pad-10">
+		
 
-		<h1>Fares &amp; Tolls</h1>
+<!-- <img style="margin-right:5px;" src="../images/HH WebBanner.gif" title="E-ZPass Reload Card" alt="E-ZPass Reload Card" border="0" />-->
 
-        <ul class="arrow"><li> <h2> <a href="http://web.mta.info/mta/news/hearings/2015FareTolls/">New Fares and Tolls Effective March 22, 2015</a></h2></li></ul>
-      
+<!--<span style="color: #0055AA;display: block;font-size: 153.9%;padding-bottom: 4px;font-weight:bold;">E-ZPass Cash Reload Card</span>-->  
 
-		<div class="span-28">
 
-			<h2>New York City Subways and Bus,<br>Staten Island Railway</h2>
 
-			<h4>Fares</h4>
+<a id="backtop"></a>
 
+<h1 style="border-bottom:none;margin-bottom:0;">Crossing Charges &mdash; Effective 2AM March 22, 2015<br />
 
+</h1>
 
-			<ul class="arrow">
+<!--h3 style="margin:auto;width:700px;padding-left:25px;padding-bottom:8px"><a href="http://web.mta.info/mta/news/hearings/2015FareTolls/FaresBT.html">Click here for new toll rates effective 2AM March 22, 2015</a></h3-->
 
-				<li><a href="http://web.mta.info/metrocard">MetroCard</a><sup style="color:#0055aa;">&reg;</sup></li>
+<hr />
 
-				<li><a href="http://web.mta.info/nyct/fare/rfindex.htm">Reduced-fare MetroCard</a></li>
+<div class="ezlinks" >
 
-				<li><a href="http://web.mta.info/metrocard/EasyPayXpress.htm">EasyPay MetroCard</a></li>
+            <ul id="topbar-links">
 
-				<li><a href="http://web.mta.info/nyct/fare/FaresatAGlance.htm#save">Ways to Save</a></li>
+	               <!-- <li class="list_h" style="margin-left:4px;font-weight:bold;font-size:14px;padding-right:25px;"><a href="/bandt/ezpass">E-ZPass Information</a></li>-->
 
-			</ul>
+                    <li class="list_h" style="margin-left:4px;font-weight:bold;font-size:14px;padding-right:25px;"><a href="#trucks" title="Trucks and Buses">Trucks &amp; Buses</a></li>
 
-		</div>
+                    <li class="list_h" style="margin-left:4px;font-weight:bold;font-size:14px;padding-right:25px;"><a href="#motorcycles" title="Motorcycles">Motorcycles</a></li>
 
+            </ul>	
 
+</div>
 
-		<div class="span-21">
 
-			<h2>Long Island Rail Road</h2>
 
-			
+<p style="margin-top:20px;">Note: E-ZPass rates apply only to customer tags issued by New York E-ZPass Customer Service Center (This includes: MTA Bridges and Tunnels, Port Authority of New   York and New Jersey, New York State Thruway Authority,  the Buffalo and Fort Erie Public Bridge Authority (Peace Bridge), and New York State Bridge   Authority). Non-NY CSC
 
-			<ul class="arrow">
+customers will pay cash or Toll by Mail rates. Anyone, regardless of residency, can apply for a New York Customer   Service Center-issued E-ZPass tag. Visit <a href="http://www.ezpassny.com">www.ezpassny.com</a> for more information or call</strong> <strong>1-800-333-TOLL (8655)</strong> to use our automated system for account inquiries and general   <em>E-ZPass</em>&reg; New York information.</p>
 
-				<li><a href="http://web.mta.info/lirr/about/TicketInfo/">Fares</a></li>			
 
-				<!-- li><a href="http://web.mta.info/lirr/about/TicketInfo/Fares2011.htm">By Zone</a></li -->
 
-				<li><a href="http://lirr42.mta.info/">Station to Station</a></li>
 
-				<li><a href="http://web.mta.info/lirr/about/TicketInfo/WaysToSave.htm">Ways to Save</a></li>
 
-				</ul>
+<p><a href="/bandt/ezpass/" class="style12">Click here to sign up for E&ndash;ZPass and E&ndash;ZPass On&ndash;the&ndash;Go information</a></p></p>
 
-			<h4>Ways to Pay</h4>
 
-			<ul class="arrow">
 
-				<li><a href="https://www.mailandride.com/">Mail&amp;Ride</a></li>
 
-				<li><a href="https://www.lirrticket.com/webticket/Cart/Welcome?id=002">WebTicket</a></li>
 
-				<li><a href="http://web.mta.info/lirr/about/TicketInfo/TicketMachine.htm">Ticket Machines</a></li>
+<div style="display:block;margin-top:15px;line-height:1.5em; font-size:15px; font-family:Helvetica, Arial, sans-serif; letter-spacing:.2px;" class="span-72">
 
-				<li><a href="http://web.mta.info/lirr/about/TicketInfo/#ticketoffices">Ticket Offices</a></li>
+  
 
-			</ul>
 
 
 
-			<h2>Metro-North Railroad</h2>
 
-			<ul class="arrow">
+<div class="title">Cars *</div>
 
-				<li><a href="http://web.mta.info/mnr/html/fares.htm">Fares</a></li>
 
-				<li><a href=" http://as0.mta.info/mnr/schedules/sched_form.cfm">Station to Station</a></li>
 
-				<li><a href="http://web.mta.info/mta/fares/MNRValueTables_rev2.html">Ways to Save</a></li>				
+<p class="subtitle">Bronx-Whitestone, Throgs Neck, &amp; RFK Bridges; Hugh L Carey<sup>1</sup> &amp;  Queens Midtown Tunnels</p>
 
-			</ul>
+<div id="container7" style="float:left;width:585px;height:75px;">
 
+    <div id="colleft7" style="float:left;width:31%"><u class="title">E-ZPass**</u><br />
 
+      $5.54<br />
 
-			<h4>Ways to Pay</h4>
+        <br />
 
-			<ul class="arrow">
+    </div>
 
-				<li><a href="https://ec0.mta.info/mnr/Cvar_MR/index.cfm">Mail&amp;Ride</a>
+    <div id="colmid7" style="float:left;width:33%"> <u class="title">Cash</u><br />
 
-					<ul class="arrow">
+        $8.00<br />
 
-						<li><a href="https://ec0.mta.info/mnr/Cvar_MR/sch_login.cfm">For Schools</a></li>
+        <br />
 
-					</ul>
+    </div>
 
-				</li>
+    <div id="colright7" style="float:left;width:31%;"><br />
 
-				<li><a href="http://web.mta.info/mnr/html/ticket_intro.htm">WebTicket</a></li>
+        <br />
 
-				<li><a href="http://as0.mta.info/mnr/stations/ticketmachines.cfm">Ticket Machines</a></li>
+        <br />
 
-				<li><a href="http://web.mta.info/mnr/html/fares.htm#a4">Ticket Offices</a></li>	
+    </div>
 
-			</ul>
+  </div>
 
-		</div>
 
 
+<br style="clear:both;" />
 
-		<div class="span-17 last">		
+  <p class="subtitle">Verrazano-Narrows Bridge (Roundtrip toll collected entering Staten Island only)</p>
 
-			<h2>Bridges and Tunnels</h2>
+  <div id="container8" style="float:left;width:585px;height:75px;">
 
-			<h4>Tolls</h4>
+    <div id="colleft8" style="float:left;width:31%"><u class="title">E-ZPass**</u><br />
 
-				<ul class="arrow">
+      $11.08<br />
 
-					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#cars">Cars</a></li>
+      <br />
 
-					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#motorcycles">Motorcycles</a></li>	
+    </div>
 
-					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#trucks">Trucks</a></li>
+    <div id="colmid8" style="float:left;width:33%"> <u class="title">Cash</u><br />
 
-					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#franchise">Franchise Buses</a></li>
+      $16.00<br />
 
-					<li><a href="http://web.mta.info/bandt/ezpass/e-zpass-toll-calculator.html">Toll Calculator</a></li>
+      <br />
 
-					<li><a href="http://web.mta.info/bandt/html/bttollvalue.html">Ways to Save</a></li>
+    </div>
 
-				</ul>
+    <div id="colright8" style="float:left;width:31%;"><br />
 
+        <br />
 
+        <br />
 
-				<h4>Ways to Pay</h4>
+    </div>
 
-				<ul class="arrow">
+  </div>
 
-					<li><a href="http://web.mta.info/bandt/ezpass">E-ZPass</a><sup style="color:#0055aa;">&reg;</sup></li>
 
-				    <li><a href="http://web.mta.info/bandt/ezpass/reload.html">E-ZPass Reload Card</a></li>
 
-				</ul>
+<br style="clear:both;" />
 
-			<h2 style="margin-top:40px;">Pre-tax Commuter Benefits</h2>
 
-				<ul class="arrow">
 
-					<li><a href="http://web.mta.info/mta/farebenefits.htm">Pre-tax Transit Benefit Information</a></li>
+<p class="subtitle">Henry Hudson Bridge&nbsp; (non-stop, cashless operation)</p>
 
-				</ul>
+  <div id="container9" style="float:left;width:585px;height:75px;">
+
+    <div id="colleft9" style="float:left;width:31%"><u class="title">E-ZPass**</u><br />
+
+      $2.54<br />
+
+      <br />
+
+    </div>
+
+    <div id="colmid9" style="float:left;width:33%"><u class="title">Tolls by Mail</u><br />
+
+      $5.50<br />
+
+      <br />
+
+    </div>
+
+    <div id="colright9" style="float:left;width:31%;"><br />
+
+        <br />
+
+        <br />
+
+    </div>
+
+  </div>
+
+<br style="clear:both;" />
+
+
+
+<p class="subtitle">Cross Bay and Marine Parkway Bridges</p>
+
+  <div id="container11" style="float:left;width:585px;height:115px;">
+
+    <div id="colleft11" style="float:left;width:31%"><u class="title">E-ZPass**</u><br />
+
+      $2.08<br />
+
+
+
+    </div>
+
+    <div id="colmid11" style="float:left;width:33%"><u class="title">Cash</u><br />
+
+      $4.00<br />
+
+    </div>
+
+    <div id="colright11" style="float:left;width:31%;"><span style="float:left;width:33%"><u class="title">Token***</u>
+
+$2.67</span>
+
+     
+
+    </div>
+
+  </div>
+
+  <br style="clear:both;" />
+
+  
+
+
+
+ <div class="title" style="margin-top:25px;">Staten Island Resident Program<br />(Roundtrip toll Verrazano-Narrows Bridge for registered residents)</div>
+
+  <div id="container11" style="float:left;width:585px;height:220px;">
+
+    <div id="colleft11" style="float:left;width:31%;">
+
+     <u class="title">E-ZPass</u><br />
+
+        $6.24 per trip<br />
+
+        <span style="font-size:small;">3 or more trips
+
+          <br />
+        a month ($0.74 rebate<br />
+          applied per trip)<br />
+        </span>
+
+        <br />
+
+        $6.60 per trip<br />
+
+        <span style="font-size:small;"> up to 2 trips a month </span><br />
+        <span style="font-size:small;">($1.10 rebate 
+applied <br />
+per trip)</span>
+
+        <p>&nbsp;</p>
+
+
+
+    </div>
+
+    <div id="colmid11" style="float:left;width:33%"><u class="title">Token***</u><br />
+
+      $8.87<br />
+
+      <br />
+
+    </div>
+
+    <div id="colright11" style="float:left;width:31%;"><u class="title">Carpool 3+***</u><br />
+
+      $3.08<br />
+
+        <br />
+
+    </div>
+
+  </div>
+
+  <br style="clear:both;" />
+
+
+
+  <div class="title" style="margin-top:55px;clear:both">Rockaway Resident Program<br />(Marine Parkway and 
+
+Cross Bay Bridges for  registered residents of Rockaway
+
+and Broad Channel)</div>
+
+
+
+  <div id="container12" style="float:left;width:585px;height:75px;">
+
+    <div id="colleft12" style="float:left;width:31%"><u class="title">E-ZPass</u><strong><sup>(a)</sup></strong><br />
+
+      $1.36<br />
+
+      <br />
+
+    </div>
+
+    <div id="colmid12" style="float:left;width:33%"><u class="title">Token***</u><br />
+
+      $1.86<br />
+
+      <br />
+
+    </div>
+
+    <div id="colright12" style="float:left;width:31%;"><br />
+
+      <br />
+
+      <br />
+
+    </div>
+
+  </div>
+
+  
+
+<br style="clear:both;" />
+
+         
+
+    <p>(a) Cross Bay Bridge toll rebated for registered  resident E-ZPass customers</p>
+
+
+
+<hr style="color:#9DA8C0;background-color:#9DA8C0;" />
+<p><strong>*2 axle passenger vehicles and trucks with  MGW
+
+of 7,000 lbs. and under. Include</strong>: SUVs, self-propelled 
+
+mobile homes,  ambulances, hearses, and vehicles with 
+
+seating capacity up to  15 adults including driver. 
+
+Each additional axle  $3.25 at most crossings except: 
+
+$6.50 at the  Verrazano-Narrows Bridge; $2.50 at&nbsp; 
+
+Henry Hudson, Cross Bay  and Marine Parkway Bridges.</p>
+
+  <p><a id="motorcycles"></a><strong>**Motorcycles</strong> E-ZPass: $2.41 or Cash:  $3.25, except
+
+    Henry Hudson, Marine  Parkway and Cross Bay Bridges
+
+    where E-ZPass toll is  $1.73. Verrazano-Narrows: E-ZPass:
+
+    $4.82 or Cash: $6.50.  Each additional axle $1.50 cash or
+
+    E-ZPass except Verrazano-Narrows  where it is $3.00</p>
+
+
+
+  <p>***<strong>Token</strong> and tickets are sold in prepaid rolls or books.</p>
+  <div>
+
+  <div id="ftn1">
+
+    <p style="font-size:smaller"><sup>1</sup> Formerly Brooklyn-Battery Tunnel</p>
+
+  </div>
+
+
+
+<div class="backtop"><a href="#backtop">Back to top</a></div>
+
+
+
+</div>
+
+
+
+<hr style="color:#9DA8C0;background-color:#9DA8C0;" />
+
+
+
+<a id="trucks"></a>
+
+
+
+<div id="truckContainer">
+
+  
+
+  
+
+  <h1>Trucks &amp; Non-Franchise Buses More Than 7,000 lbs., MGW</h1>
+
+  
+
+  <div class="title"> Bronx-Whitestone, Throgs Neck, <span class="subtitle">RFK Bridges</span>, Hugh L Carey<sup>1</sup>  and  Queens  Midtown Tunnels</div>
+
+<p></p>
+
+<div id="container" style="float:left;width:585px;">
+
+  <div id="colleft" style="float:left;width:31%;height:200px;">
+
+      <u class="title">Axles</u><br />
+
+        2<br />
+
+        3<br />
+
+        4<br />
+
+        5<br />
+
+        6<br />
+
+      7<br />
+
+      <i>Each additional axle:</i>
+
+    </div>
+
+    <div id="colmid" style="float:left;width:32%;height:200px;"> 
+
+      <u class="title">E-ZPass</u><br />
+
+          $10.00<br />
+
+          $16.39<br />
+
+          $20.95<br />
+
+          $27.31<br />
+
+          $31.87<br />
+
+          $38.23<br />
+
+        $6.39<br />
+
+    </div>
+
+    <div id="colright" style="margin-bottom:25px;float:left;width:31%;height:200px;">
+
+      <u class="title">Cash</u><br />
+
+          $16.00<br />
+
+          $26.00<br />
+
+          $33.00<br />
+
+          $43.00<br />
+
+          $50.00<br />
+
+          $62.00<br />
+
+          $9.00<br />
+
+     </div>
+
+</div>
+
+
+
+<br style="clear:both;">
+
+
+
+<div class="title">Verrazano-Narrows Bridge (roundtrip toll collected entering Staten Island only)</div>
+
+
+
+<div id="container2" style="float:left;width:585px;">
+
+      <div id="colleft2" style="float:left;width:31%;height:200px;"> 
+
+        <u class="title">Axles</u><br />
+
+        2<br />
+
+        3<br />
+
+        4<br />
+
+        5<br />
+
+        6<br />
+
+        7<br />
+
+        <i>Each additional axle:</i>
+
+     </div>
+
+      <div id="colmid2" style="float:left;width:32%;height:200px;"> 
+
+          <u class="title">E-ZPass</u><br />
+
+  $20.00<br />
+
+  $32.78<br />
+
+    $41.90<br />
+
+    $54.62<br />
+
+    $63.74<br />
+
+    $76.46<br />
+
+            $12.78<br />
+
+        </div>
+
+      <div id="colright2" style="margin-bottom:5px;float:left;width:31%;height:200px;"> 
+
+        <u class="title">Cash</u><br />
+
+        $32.00<br />
+
+        $52.00<br />
+
+        $66.00<br />
+
+        $86.00<br />
+
+        $100.00<br />
+
+        $124.00<br />
+
+        $18.00<br />
+
+      </div>
+
+
+
+<div style="clear:left;padding:0px 10px">
+
+<p>New York E-ZPass Customer  Service Center Business and Commercial customers will receive a  rebate of  the E-ZPass toll for commercial vehicles on accounts with a minimum of 11 VNB  trips per month using the same E-ZPass account, as long as the rebate program remains in effect. <a href="http://web.mta.info/bandt/html/vndrp.html">Click here for more information  on this rebate program.</a></p>
+
+</div>
+
+</div>
+
+
+
+<br style="clear:both;">
+
+<div class="title">Cross Bay and Marine Parkway Bridges</div>
+
+<div id="container3" style="float:left;width:585px;">
+
+<div id="colleft3" style="float:left;width:31%;height:200px;"> <u class="title">Axles</u><br />
+
+    2<br />
+
+    3<br />
+
+    4<br />
+
+    5<br />
+
+    6<br />
+
+    7<br />
+
+<i>Each additional axle:</i></div>
+
+<div id="colmid3" style="float:left;width:33%;height:200px;"> <u class="title">E-ZPass</u><br />
+
+    $5.00<br />
+
+    $8.20<br />
+
+    $10.48<br />
+
+    $13.66<br />
+
+    $15.94<br />
+
+    $19.12<br />
+
+    $3.20<br />
+
+</div>
+
+<div id="colright3" style="margin-bottom:25px;float:left;width:31%;height:200px;"> <u class="title">Cash</u><br />
+
+    $8.00<br />
+
+    $13.00<br />
+
+    $16.50<br />
+
+    $21.50<br />
+
+    $25.00<br />
+
+    $31.00<br />
+
+    $4.50<br />
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<hr style="clear:both;" />
+
+
+
+<p><a id="franchise"></a>
+
+</p>
+
+<h1>Franchise Buses &ndash; E-ZPass</h1>
+
+<div class="title">
+
+   Bronx-Whitestone, Throgs Neck, RFK Bridges,
+
+  Hugh L Carey<sup>1</sup> and Queens Midtown  Tunnels</div>
+
+    <div id="container4" style="float:left;width:585px;height:35px;">
+
+      <div id="colleft4" style="float:left;width:31%">
+
+      2 Axle:<br />
+
+      </div>
+
+      <div id="colmid4" style="float:left;width:33%">
+
+        $4.01<br />
+
+      </div>
+
+      <div id="colright4" style="float:left;width:31%;">
+
+        3  Axle: $4.76<br />
+
+      </div>
+
+     </div>
+
+     
+
+<hr style="clear:both;color:#9DA8C0;background-color:#9DA8C0;" />
+
+
+
+    <div class="title">Verrazano-Narrows Bridge</div>
+
+    <div id="container5" style="float:left;width:585px;height:35px;">
+
+      <div id="colleft5" style="float:left;width:31%">
+
+        2 Axle:<br /></div>
+
+      <div id="colmid5" style="float:left;width:33%">
+
+        $8.02<br />
+
+      </div>
+
+      <div id="colright5" style="float:left;width:31%;">
+
+        3  Axle: $9.52<br />
+
+      </div>
+
+    </div>
+
+
+
+<hr style="clear:both;color:#9DA8C0;background-color:#9DA8C0;" />
+
+
+
+    <div class="title">Cross Bay and Marine Parkway Bridges</div>
+
+    <div id="container6" style="float:left;width:585px;height:35px;">
+
+      <div id="colleft6" style="float:left;width:31%">
+
+        2 Axle:<br />
+
+      </div>
+
+      <div id="colmid6" style="float:left;width:33%">
+
+        $2.00<br />
+
+      </div>
+
+      <div id="colright6" style="float:left;width:31%;">
+
+        3  Axle: $2.51<br />
+
+      </div>
+
+    </div>
+
+
+
+<hr style="clear:both;color:#9DA8C0;background-color:#9DA8C0;" />
+
+
+
+
+
+
+
+  <div id="ftn1" style="border:1px solid #B4B4B4;">
+
+    <p style="font-size:smaller"><sup>1</sup>Formerly Brooklyn-Battery Tunnel</p>
+
+    
+
+        <p style="font-size:smaller">The Authority reserves the right to determine whether any vehicle is of unusual or unconventional design, weight, or construction and therefore not within any of the listed categories. The Authority also reserves the right to determine the crossing charge for any such vehicle of unusual or unconventional design, weight, or construction.</p>
+
+        
+
+        <p style="font-size:smaller">Bicycles are not permitted over Bronx-Whitestone, Throgs Neck, and Verrazano-Narrows Bridges, or through the tunnels. Such vehicles may cross the pedestrian paths at the Robert F. Kennedy, Henry Hudson, Marine Parkway-Gil Hodges Memorial, and Cross Bay Veterans Memorial Bridges without payment of crossing charge, but they must be walked across the pedestrian paths of these bridges.</p>
+
+        
+
+        <p style="font-size:smaller">Only vehicles authorized to use parkways are authorized to use the Henry Hudson Bridge.</p>
+
+  <div class="backtop" style="clear:both;"><a href="#backtop">Back to top</a></div>
+
+  </div>
+
+
+
+</div> <!--- end truckContainer section --->
+
+
 
 	  </div>
-
-
-
-		<div class="span-72">
-
-			<h2>You might also be interested in</h2>
-
-			<div class="span-21 roundCorners pad-10" style="height:223px;">
-
-				<h2>Ways to Save</h2>			
-
-				<div class="span-11">
-
-					<h4>Subway and Bus</h4>			
-
-					<ul style="margin: 0;">
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/nyct/fare/FaresatAGlance.htm#save">MetroCard</a><sup style="color:#0055aa;">&reg;</sup></li>
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/nyct/fare/rfindex.htm">Reduced Fare</a></li>
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/metrocard/EasyPayXpress.htm">EasyPay</a></li>
-
-					</ul>
-
-
-
-					<h4>Rail</h4>
-
-					<ul style="margin: 0;">
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/lirr/about/TicketInfo/ValueChart.htm">Long Island</a></li> 
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/mta/fares/MNRValueTables_rev2.html">Metro-North</a></li>
-
-					</ul>
-
-				</div>
-
-				<div class="span-9 last">
-
-					<h4>Car</h4>
-
-					<ul style="margin: 0;">
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/bandt/html/bttollvalue.html">E-ZPass</a><sup style="color:#0055aa;">&reg;</sup></li>
-
-					</ul>
-
-
-
-					<h4>Transit Benefits</h4>
-
-					<ul style="margin: 0;">
-
-						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/mta/farebenefits.htm">Pre-Tax</a></li>
-
-					</ul>
-
-					<img src="/css/images/ways_to_save_graphic.jpg" alt="Ways to save">
-
-				</div>	
-
-			</div>
-
-
-
-			<div class="span-21 roundCorners pad-10" style="height:223px;">
-
-				<h2><a href="http://web.mta.info/apps">The App Center</a></h2>
-
-				<div class="span-6"><img src="/siteimages/apps_image.jpg" alt="MTA App image"> </div>
-
-				<div class="span-13">
-
-					<ul class="arrow" style="margin:10px 0; padding:0;">
-
-						<li><a href="http://web.mta.info/apps">Get Apps</a></li>
-
-						<li><a href="http://web.mta.info/developers">Developer Resources</a></li>
-
-					</ul>
-
-				</div>	
-
-			</div>
-
-
-
-			<div class="span-21 last roundCorners pad-10"  style="height:223px;">
-
-				<h2><a href="http://web.mta.info/nyct/service/OnTheGo.htm">New for iPhones &amp; iPads!</a></h2>
-
-				<p style="float: left; margin-right: 10px;"><img src="/nyct/images/onthego_phone.jpg" alt="iPhone image" border="0"></p>
-
-				<p><a href="http://web.mta.info/nyct/service/OnTheGo.htm"><img src="/nyct/images/onthego.jpg" alt="On the Go image"><br>
-
-				Get Current Service Status, Trip Planner, Maps and more...</a></p>
-
-			</div>
-
-		</div>	
 
 	</div>
 
 
 
-	<div id="Google-skyscraper-ad" class="push-2 span-16 last roundCorners">
+	<div id="Google-skyscraper-ad" class="push-2 span-16 last roundCorners" >
 
 				<script type="text/javascript">
 		<!--
@@ -443,6 +1010,12 @@
 
 
 <!-- End Content -->
+
+
+
+
+
+
 
 </div> <!-- close contentbox -->
 
