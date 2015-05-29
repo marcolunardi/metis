@@ -1,0 +1,513 @@
+<html>
+<head>
+<title>mta.info | MTA Fares and Tolls</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+<link rel="shortcut icon" href="/siteimages/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/grid.css">
+<link rel="stylesheet" type="text/css" href="/css/topbar.css">
+<link rel="stylesheet" type="text/css" href="/css/formalize.css">
+<!-- <link rel="stylesheet" type="text/css" href="/css/jquery.datepick.css"> -->
+
+<!-- jQuery include should be at the top -->
+<script language="javascript" type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/template.css">
+
+
+		<!--[if lt IE 9]>
+			<style>.roundCorners {border: 1px solid #b4b4b4;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;background: #fff;behavior: url(/css/border-radius.htc);}</style>
+		<![endif]-->
+	
+<!--[if IE 6]>
+<style>
+#topbar { margin: 0; padding:0;	height: 122px; width: 961px;}
+#horizontalcssmenu ul#cssmenu1 li{ position: relative; display: inline;	float: left; border: none; }
+</style>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/css/print.css" media="print">
+</head>
+
+<body>
+		<div id="skip-navigation">
+    <a href="#main-content">Skip to main content</a>
+  </div>  
+<div id="mainbox">	
+		
+	<div id="topbar">
+
+	
+
+		<div id="branding">
+
+		<a href="http://www.mta.info"><img src="/template/images/mta_info.gif" alt="To MTA.info homepage"></a>
+
+		</div>
+
+		
+
+		<div id="search">			
+
+			<ul id="topbar-links">
+
+				<li class="list_h" style="margin-left:4px;"><a href="/accessibility">Accessibility</a></li>
+
+				<li class="list_h" style="margin-left:4px;"><a href="http://assistive.usablenet.com/tt/http://www.mta.info">Text-only</a></li>
+
+				<li class="list_h" style="margin-left:4px;"><a href="/selfserve">Customer Self-Service</a></li>
+				
+				<li class="list_h" style="margin-left:4px;"><a href="/mta/employment/">Employment</a></li>
+
+				<li class="list_h" style="margin-left:4px;"><a href="/faqs.htm">FAQs/Contact Us</a></li>
+
+			</ul><br />
+
+      	  <!-- Timer above hides Search during technical maintenance windows -->
+			<div id="search-box" style="width:230px; height:32px; float:right; margin-top:4px; margin-right:0; padding-right:0;">
+
+			<form id="searchform" method="get" action="http://search.mta.info/search" style="margin:0; padding:0; height:32px; float:left;">
+
+				<input type="hidden" name="site" value="my_collection"/>
+
+				<input type="hidden" name="client" value="my_collection"/>
+
+				<input type="hidden" name="proxystylesheet" value="my_collection"/>
+
+				<input type="hidden" name="output" value="xml_no_dtd"/>				
+
+				<!--<label for "searchinputbox" style="margin-left:-999px; margin-top:0; font-size:10px;">Enter search term:</label>-->
+
+				<input type="text" name="q" id="searchinputbox" alt="searchinputbox" size="20" maxlength="255" value="" style="margin-right:6px;float:left;" /><input type="submit" name="btnG" value="search" id="searchbutton" style="padding:1px 8px; float:right; margin-left:0;margin-top:-1px;">
+
+			</form>
+
+			</div>		
+		
+		</div>
+
+
+
+		<div id="horizontalcssmenu" style="clear: both;">
+
+			<ul id="cssmenu1">				
+
+					<li style="width: 75px; border-left: none;"><a href="http://www.mta.info" style="padding-left:18px;">Home</a>
+
+						<ul>					
+
+						<li><a href="http://www.mta.info">MTA Home</a></li>
+
+						<li><a href="http://www.mta.info/nyct">NYC Subways and Buses</a></li>
+
+						<li><a href="http://www.mta.info/lirr">Long Island Rail Road</a></li>			
+
+						<li><a href="http://www.mta.info/mnr">Metro-North Railroad</a></li>
+
+						<li><a href="http://www.mta.info/bandt">Bridges and Tunnels</a></li>
+
+						<li><a href="http://web.mta.info/capital">MTA Capital Program</a></li>
+
+					</ul> 
+
+				</li>
+
+				<li style="width: 99px;"><a href="http://www.mta.info/schedules">Schedules</a></li>
+
+				<li style="width: 117px;"><a href="http://web.mta.info/fares">Fares &amp; Tolls</a></li>
+
+				<li style="width: 65px;"><a href="http://web.mta.info/maps">Maps</a></li>
+
+				<li style="width: 199px;"><a href="http://web.mta.info/service">Planned Service Changes</a></li>
+
+				<li style="width: 96px;"><a href="http://web.mta.info/about">MTA Info</a></li>
+
+				<li style="width: 183px;"><a href="http://web.mta.info/business">Doing Business With Us</a></li>
+
+				<li style="width: 119px;"><a href="http://web.mta.info/accountability/" style="padding-right:23px;">Transparency</a>
+
+					<ul>
+
+						<li><a href="http://web.mta.info/accountability">Main Page</a></li>
+
+						<li><a href="http://web.mta.info/mta/boardmaterials.html">Board Materials</a></li>
+
+						<li><a href="http://web.mta.info/mta/budget/">Budget Info</a></li>
+
+						<li><a href="http://web.mta.info/capital">Capital Program Info</a></li>
+
+						<li><a href="http://web.mta.info/capitaldashboard/CPDHome.html">Capital Program Dashboard</a></li>
+
+						<li><a href="http://web.mta.info/mta/leadership/">MTA Leadership</a></li>
+
+						<li><a href="http://web.mta.info/persdashboard/performance14.html">Performance Indicators</a></li>	
+						<li><a href="http://www.mta.info/mta-news">Press Releases and News</a></li>
+
+						<li><a href="http://web.mta.info/mta/news/hearings">Public Hearings</a></li>						
+
+
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</div>
+
+</div> <!-- close topbar -->
+
+
+
+
+
+		<div id="breadcrumbs"><a href="http://www.mta.info/" title="Home Page">Home</a> &gt; <a href="http://web.mta.info/fares/">Fares</a> &gt; <strong>MTA Fares and Tolls</strong></div>
+		
+	
+		<div id="contentbox" style="margin:20px 0 10px 0; padding:0;">
+		<!-- skip navigation anchor -->
+	<a name="main-content">&nbsp;</a>
+		
+			
+<!-- Enter Content Here -->
+
+	<div class="roundCorners push-1 span-72 pad-10">
+
+		<h1>Fares &amp; Tolls</h1>
+
+        <ul class="arrow"><li> <h2> <a href="http://web.mta.info/mta/news/hearings/2015FareTolls/">New Fares and Tolls Effective March 22, 2015</a></h2></li></ul>
+      
+
+		<div class="span-28">
+
+			<h2>New York City Subways and Bus,<br>Staten Island Railway</h2>
+
+			<h4>Fares</h4>
+
+
+
+			<ul class="arrow">
+
+				<li><a href="http://web.mta.info/metrocard">MetroCard</a><sup style="color:#0055aa;">&reg;</sup></li>
+
+				<li><a href="http://web.mta.info/nyct/fare/rfindex.htm">Reduced-fare MetroCard</a></li>
+
+				<li><a href="http://web.mta.info/metrocard/EasyPayXpress.htm">EasyPay MetroCard</a></li>
+
+				<li><a href="http://web.mta.info/nyct/fare/FaresatAGlance.htm#save">Ways to Save</a></li>
+
+			</ul>
+
+		</div>
+
+
+
+		<div class="span-21">
+
+			<h2>Long Island Rail Road</h2>
+
+			
+
+			<ul class="arrow">
+
+				<li><a href="http://web.mta.info/lirr/about/TicketInfo/">Fares</a></li>			
+
+				<!-- li><a href="http://web.mta.info/lirr/about/TicketInfo/Fares2011.htm">By Zone</a></li -->
+
+				<li><a href="http://lirr42.mta.info/">Station to Station</a></li>
+
+				<li><a href="http://web.mta.info/lirr/about/TicketInfo/WaysToSave.htm">Ways to Save</a></li>
+
+				</ul>
+
+			<h4>Ways to Pay</h4>
+
+			<ul class="arrow">
+
+				<li><a href="https://www.mailandride.com/">Mail&amp;Ride</a></li>
+
+				<li><a href="https://www.lirrticket.com/webticket/Cart/Welcome?id=002">WebTicket</a></li>
+
+				<li><a href="http://web.mta.info/lirr/about/TicketInfo/TicketMachine.htm">Ticket Machines</a></li>
+
+				<li><a href="http://web.mta.info/lirr/about/TicketInfo/#ticketoffices">Ticket Offices</a></li>
+
+			</ul>
+
+
+
+			<h2>Metro-North Railroad</h2>
+
+			<ul class="arrow">
+
+				<li><a href="http://web.mta.info/mnr/html/fares.htm">Fares</a></li>
+
+				<li><a href=" http://as0.mta.info/mnr/schedules/sched_form.cfm">Station to Station</a></li>
+
+				<li><a href="http://web.mta.info/mta/fares/MNRValueTables_rev2.html">Ways to Save</a></li>				
+
+			</ul>
+
+
+
+			<h4>Ways to Pay</h4>
+
+			<ul class="arrow">
+
+				<li><a href="https://ec0.mta.info/mnr/Cvar_MR/index.cfm">Mail&amp;Ride</a>
+
+					<ul class="arrow">
+
+						<li><a href="https://ec0.mta.info/mnr/Cvar_MR/sch_login.cfm">For Schools</a></li>
+
+					</ul>
+
+				</li>
+
+				<li><a href="http://web.mta.info/mnr/html/ticket_intro.htm">WebTicket</a></li>
+
+				<li><a href="http://as0.mta.info/mnr/stations/ticketmachines.cfm">Ticket Machines</a></li>
+
+				<li><a href="http://web.mta.info/mnr/html/fares.htm#a4">Ticket Offices</a></li>	
+
+			</ul>
+
+		</div>
+
+
+
+		<div class="span-17 last">		
+
+			<h2>Bridges and Tunnels</h2>
+
+			<h4>Tolls</h4>
+
+				<ul class="arrow">
+
+					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#cars">Cars</a></li>
+
+					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#motorcycles">Motorcycles</a></li>	
+
+					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#trucks">Trucks</a></li>
+
+					<li><a href="http://web.mta.info/bandt/traffic/btmain.html#franchise">Franchise Buses</a></li>
+
+					<li><a href="http://web.mta.info/bandt/ezpass/e-zpass-toll-calculator.html">Toll Calculator</a></li>
+
+					<li><a href="http://web.mta.info/bandt/html/bttollvalue.html">Ways to Save</a></li>
+
+				</ul>
+
+
+
+				<h4>Ways to Pay</h4>
+
+				<ul class="arrow">
+
+					<li><a href="http://web.mta.info/bandt/ezpass">E-ZPass</a><sup style="color:#0055aa;">&reg;</sup></li>
+
+				    <li><a href="http://web.mta.info/bandt/ezpass/reload.html">E-ZPass Reload Card</a></li>
+
+				</ul>
+
+			<h2 style="margin-top:40px;">Pre-tax Commuter Benefits</h2>
+
+				<ul class="arrow">
+
+					<li><a href="http://web.mta.info/mta/farebenefits.htm">Pre-tax Transit Benefit Information</a></li>
+
+				</ul>
+
+	  </div>
+
+
+
+		<div class="span-72">
+
+			<h2>You might also be interested in</h2>
+
+			<div class="span-21 roundCorners pad-10" style="height:223px;">
+
+				<h2>Ways to Save</h2>			
+
+				<div class="span-11">
+
+					<h4>Subway and Bus</h4>			
+
+					<ul style="margin: 0;">
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/nyct/fare/FaresatAGlance.htm#save">MetroCard</a><sup style="color:#0055aa;">&reg;</sup></li>
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/nyct/fare/rfindex.htm">Reduced Fare</a></li>
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/metrocard/EasyPayXpress.htm">EasyPay</a></li>
+
+					</ul>
+
+
+
+					<h4>Rail</h4>
+
+					<ul style="margin: 0;">
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/lirr/about/TicketInfo/ValueChart.htm">Long Island</a></li> 
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/mta/fares/MNRValueTables_rev2.html">Metro-North</a></li>
+
+					</ul>
+
+				</div>
+
+				<div class="span-9 last">
+
+					<h4>Car</h4>
+
+					<ul style="margin: 0;">
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/bandt/html/bttollvalue.html">E-ZPass</a><sup style="color:#0055aa;">&reg;</sup></li>
+
+					</ul>
+
+
+
+					<h4>Transit Benefits</h4>
+
+					<ul style="margin: 0;">
+
+						<li class="list_v"><a style="font-weight: normal;" href="http://web.mta.info/mta/farebenefits.htm">Pre-Tax</a></li>
+
+					</ul>
+
+					<img src="/css/images/ways_to_save_graphic.jpg" alt="Ways to save">
+
+				</div>	
+
+			</div>
+
+
+
+			<div class="span-21 roundCorners pad-10" style="height:223px;">
+
+				<h2><a href="http://web.mta.info/apps">The App Center</a></h2>
+
+				<div class="span-6"><img src="/siteimages/apps_image.jpg" alt="MTA App image"> </div>
+
+				<div class="span-13">
+
+					<ul class="arrow" style="margin:10px 0; padding:0;">
+
+						<li><a href="http://web.mta.info/apps">Get Apps</a></li>
+
+						<li><a href="http://web.mta.info/developers">Developer Resources</a></li>
+
+					</ul>
+
+				</div>	
+
+			</div>
+
+
+
+			<div class="span-21 last roundCorners pad-10"  style="height:223px;">
+
+				<h2><a href="http://web.mta.info/nyct/service/OnTheGo.htm">New for iPhones &amp; iPads!</a></h2>
+
+				<p style="float: left; margin-right: 10px;"><img src="/nyct/images/onthego_phone.jpg" alt="iPhone image" border="0"></p>
+
+				<p><a href="http://web.mta.info/nyct/service/OnTheGo.htm"><img src="/nyct/images/onthego.jpg" alt="On the Go image"><br>
+
+				Get Current Service Status, Trip Planner, Maps and more...</a></p>
+
+			</div>
+
+		</div>	
+
+	</div>
+
+
+
+	<div id="Google-skyscraper-ad" class="push-2 span-16 last roundCorners">
+
+				<script type="text/javascript">
+		<!--
+		google_ad_client = "pub-0982027042052701";
+		/* 160x600, created 5/6/11 */
+		google_ad_slot = "8916589146";
+		google_ad_width = 160;
+		google_ad_height = 600;
+		//-->
+		</script>
+		<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+	</div>
+
+
+
+<!-- End Content -->
+
+</div> <!-- close contentbox -->
+
+<!-- JavaScript Includes -->
+<script type="text/javascript" src="/js/csshorizontalmenu.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#printfriendly").click(function() {
+		var s = document.location.search;
+		if (!s)	
+			window.open(document.location.pathname + '?print=1', '', 'scrollbars=1');
+		else
+			window.open(document.location.pathname + s + '&print=1', '', 'scrollbars=1');
+		return false;
+	});
+});
+</script>
+	
+	
+<div class="container clear">
+	<div class="span-15" style="text-align: left;" style="margin-right: 12px;">
+		<div id="translate">
+			<div id="google_translate_element">
+				<div id="temp_GT" class="span-15">
+					<ul style="margin: 0;">
+						<li class="list_f last_list_f first_list_f"><span style="color: #0055AA; font-weight: bold; margin-right: 5px;">Google Translate</span><img style="vertical-align: baseline;" src="/siteimages/google_logo.png" alt="" /></li>
+					</ul>
+				</div>
+			</div><!-- close google_translate_element -->
+		</div><!-- close translate -->
+	</div><!-- close span-14 last -->
+</div> <!-- Close of Container -->
+
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+	pageLanguage: 'en',
+	layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+
+$("#temp_GT").click(function() {
+	var fileref = document.createElement('script');
+		fileref.setAttribute("type", "text/javascript");
+		fileref.setAttribute("src", "http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit");
+
+		document.getElementsByTagName("head")[0].appendChild(fileref);
+	$("#temp_GT").hide();
+});
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51590636-1', 'mta.info');
+  ga('send', 'pageview');
+
+</script>
+</div> <!-- close mainbox -->
+</div>
+</body>
+</html>
