@@ -1,0 +1,29 @@
+
+{***********************************************************************
+
+	Nome: LIXM
+	
+	Descrizione: LIX "Medie" 
+		      		      
+************************************************************************}
+
+
+
+Variable:Lixem(0),Contat(0);
+
+Lixem=0;
+
+Contat=0;
+
+If close>average(close,96) then Contat=Contat+1;
+
+If close>average(close,288) then Contat=Contat+1;
+
+If close<average(close,96) then Contat=Contat-1;
+
+If close<average(close,288) then Contat=Contat-1;
+
+If Contat=2 then Lixem=1 else if Contat=-2 then Lixem=-1 else Lixem=0;
+
+Plot1(Lixem,"LixM",darkcyan,0,1); 
+

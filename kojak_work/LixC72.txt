@@ -1,0 +1,205 @@
+
+{***********************************************************************
+
+	Nome: LIX EVO C 12-72
+	
+	Descrizione: LIX "ControTrend" 
+		      		      
+************************************************************************}
+
+
+
+Variable:Lixec72(0),Contatl(0),Contats(0),Clong(0),Cshort(0),Ctot(0),C12(0),C24(0),C48(0),C72(0),C96(0),C192(0),C288(0),DL12(0),DL24(0),DL48(0),DL72(0),DL96(0),DL192(0),DL288(0),DH12(0),DH24(0),DH48(0),DH72(0),DH96(0),DH192(0),DH288(0);
+
+
+DL12=((close/minlist(close[11],close[10],close[9],close[8],close[7],close[6]))-1)*100;
+
+DH12=((close/maxlist(close[11],close[10],close[9],close[8],close[7],close[6]))-1)*100;
+
+DL24=((close/minlist(close[23],close[22],close[21],close[20],close[19],close[18]))-1)*100;
+
+DH24=((close/maxlist(close[23],close[22],close[21],close[20],close[19],close[18]))-1)*100;
+
+DL48=((close/minlist(close[47],close[46],close[45],close[44],close[43],close[42]))-1)*100;
+
+DH48=((close/maxlist(close[47],close[46],close[45],close[44],close[43],close[42]))-1)*100;
+
+DL72=((close/minlist(close[71],close[70],close[69],close[68],close[67],close[66]))-1)*100;
+
+DH72=((close/maxlist(close[71],close[70],close[69],close[68],close[67],close[66]))-1)*100;
+
+DL96=((close/minlist(close[95],close[94],close[93],close[92],close[91],close[90]))-1)*100;
+
+DH96=((close/maxlist(close[95],close[94],close[93],close[92],close[91],close[90]))-1)*100;
+
+DL192=((close/minlist(close[191],close[190],close[189],close[188],close[187],close[186]))-1)*100;
+
+DH192=((close/maxlist(close[191],close[190],close[189],close[188],close[187],close[186]))-1)*100;
+
+DL288=((close/minlist(close[287],close[286],close[285],close[284],close[283],close[282]))-1)*100;
+
+DH288=((close/maxlist(close[287],close[286],close[285],close[284],close[283],close[282]))-1)*100;
+
+
+CLong=0;
+
+Cshort=0;
+
+
+Contatl=0;
+
+If close<average(close,12) then Contatl=Contatl+1;
+
+If close>close[12] then Contatl=Contatl+1;
+
+If DH12>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,12) then Contats=Contats-1;
+
+If close<close[12] then Contats=Contats-1;
+
+If DL12<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C12=(((average(close,12)/close)-1)*100) else C12=0;
+
+If Contatl=3 then Clong=Clong+1;
+
+If Contats=-3 then Cshort=Cshort+1;
+
+
+Contatl=0;
+
+If close<average(close,24) then Contatl=Contatl+1;
+
+If close>close[24] then Contatl=Contatl+1;
+
+If DH24>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,24) then Contats=Contats-1;
+
+If close<close[24] then Contats=Contats-1;
+
+If DL24<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C24=(((average(close,24)/close)-1)*100) else C24=0;
+
+If Contatl=3 then Clong=Clong+1;
+
+If Contats=-3 then Cshort=Cshort+1;
+
+
+Contatl=0;
+
+If close<average(close,48) then Contatl=Contatl+1;
+
+If close>close[48] then Contatl=Contatl+1;
+
+If DH48>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,48) then Contats=Contats-1;
+
+If close<close[48] then Contats=Contats-1;
+
+If DL48<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C48=(((average(close,48)/close)-1)*100) else C48=0;
+
+If Contatl=3 then Clong=Clong+1;
+
+If Contats=-3 then Cshort=Cshort+1;
+
+
+Contatl=0;
+
+If close<average(close,72) then Contatl=Contatl+1;
+
+If close>close[72] then Contatl=Contatl+1;
+
+If DH72>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,72) then Contats=Contats-1;
+
+If close<close[72] then Contats=Contats-1;
+
+If DL72<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C72=(((average(close,72)/close)-1)*100) else C72=0;
+
+If Contatl=3 then Clong=Clong+1;
+
+If Contats=-3 then Cshort=Cshort+1;
+
+
+Contatl=0;
+
+If close<average(close,96) then Contatl=Contatl+1;
+
+If close>close[96] then Contatl=Contatl+1;
+
+If DH96>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,96) then Contats=Contats-1;
+
+If close<close[96] then Contats=Contats-1;
+
+If DL96<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C96=(((average(close,96)/close)-1)*100) else C96=0;
+
+
+Contatl=0;
+
+If close<average(close,192) then Contatl=Contatl+1;
+
+If close>close[192] then Contatl=Contatl+1;
+
+If DH192>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,192) then Contats=Contats-1;
+
+If close<close[192] then Contats=Contats-1;
+
+If DL192<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C192=(((average(close,192)/close)-1)*100) else C192=0;
+
+
+Contatl=0;
+
+If close<average(close,288) then Contatl=Contatl+1;
+
+If close>close[288] then Contatl=Contatl+1;
+
+If DH288>0 then Contatl=Contatl+1;
+
+Contats=0;
+
+If close>average(close,288) then Contats=Contats-1;
+
+If close<close[288] then Contats=Contats-1;
+
+If DL288<0 then Contats=Contats-1;
+
+If Contatl=3 or Contats=-3 then C288=(((average(close,288)/close)-1)*100) else C288=0;
+
+
+If (Clong+Cshort)>0 then Ctot=(Clong+Cshort) else Ctot=1;
+
+
+Lixec72=(C12+C24+C48+C72)/Ctot;
+
+
+Plot1(Lixec72,"LixC72",darkmagenta,0,1); 
+

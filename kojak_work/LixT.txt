@@ -1,0 +1,30 @@
+{***********************************************************************
+
+	Nome: LIX EVO T
+	
+	Descrizione: LIX "Trend" 
+		      		      
+************************************************************************}
+
+
+
+Variable:Lixet(0), T12(0), T24(0), T48(0), T72(0), T96(0), T192(0), T288(0);
+
+T12=((close[0]/avglist(close[11],close[10],close[9],close[8],close[7],close[6]))-1)*100;
+
+T24=((close[0]/avglist(close[23],close[22],close[21],close[20],close[19],close[18]))-1)*100;
+
+T48=((close/avglist(close[47],close[46],close[45],close[44],close[43],close[42]))-1)*100;
+
+T72=((close/avglist(close[71],close[70],close[69],close[68],close[67],close[66]))-1)*100;
+
+T96=((close/avglist(close[95],close[94],close[93],close[92],close[91],close[90]))-1)*100;
+
+T192=((close/avglist(close[191],close[190],close[189],close[188],close[187],close[186]))-1)*100;
+
+T288=((close/avglist(close[287],close[286],close[285],close[284],close[283],close[282]))-1)*100;
+
+Lixet=(T12+T24+T48+T72+T96+T192+T288)/7;
+
+Plot1(LixeT,"LixT",darkgreen,0,1); 
+
